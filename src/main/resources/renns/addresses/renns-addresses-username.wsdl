@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://ancpi.ro/renns/soap/address"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ancpi.ro/renns/soap/address"
+                  xmlns:wsp="http://www.w3.org/ns/ws-policy"
+                  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+                  xmlns:sc1="http://schemas.sun.com/2006/03/wss/client"
+                  xmlns:wspp="http://java.sun.com/xml/ns/wsit/policy">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+                   xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0"
+                   targetNamespace="http://ancpi.ro/renns/soap/address">
+
+            <xs:element name="getAddressWSRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="1" minOccurs="1" name="county" type="xs:string"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="localityName" type="xs:string"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="administratifNo" type="xs:string"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="cua" type="xs:string"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="status" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAddressWSResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="addressWS" type="tns:addressWS"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:complexType name="addressWS">
+                <xs:sequence>
+                    <xs:element name="name" type="xs:string"/>
+                    <xs:element name="administratifNo" type="xs:string"/>
+                    <xs:element name="county" type="xs:string"/>
+                    <xs:element name="uat" type="xs:string"/>
+                    <xs:element name="siruta" type="xs:string"/>
+                    <xs:element name="localityName" type="xs:string"/>
+                    <xs:element name="date" type="xs:date"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="history" type="xs:string"/>
+                    <xs:element name="xCordinate" type="xs:string"/>
+                    <xs:element name="yCordinate" type="xs:string"/>
+                    <xs:element name="cua" type="xs:string"/>
+                    <xs:element name="status" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:annotation>
+                <xs:appinfo>
+                    <jaxb:globalBindings>
+                        <jaxb:javaType name="java.util.Calendar"
+                                       parseMethod="javax.xml.bind.DatatypeConverter.parseDateTime"
+                                       printMethod="javax.xml.bind.DatatypeConverter.printDateTime" xmlType="xs:date"/>
+                    </jaxb:globalBindings>
+                </xs:appinfo>
+            </xs:annotation>
+
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getAddressWSResponse">
+        <wsdl:part element="tns:getAddressWSResponse" name="getAddressWSResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getAddressWSRequest">
+        <wsdl:part element="tns:getAddressWSRequest" name="getAddressWSRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="addressWS1Port">
+        <wsdl:operation name="getAddressWS">
+            <wsdl:input message="tns:getAddressWSRequest" name="getAddressWSRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:getAddressWSResponse" name="getAddressWSResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="addressWS1PortSoap11" type="tns:addressWS1Port">
+        <wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#UsernameToken"/>
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAddressWS">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getAddressWSRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAddressWSResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="addressWS1PortService">
+        <wsdl:port binding="tns:addressWS1PortSoap11" name="addressWS1PortSoap11">
+            <soap:address location="http://renns.ancpi.ro/renns-public-test/soapws/"/>
+        </wsdl:port>
+    </wsdl:service>
+
+    <!-- Policy for Username Token with plaintext password, sent from client to
+      server only -->
+    <wsp:Policy wsu:Id="UsernameToken">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <wsp:Policy>
+                    <wsu:UsernameToken wsu:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+                        <wsp:Policy>
+                            <wsu:WssUsernameToken10 />
+                        </wsp:Policy>
+                    </wsu:UsernameToken>
+                </wsp:Policy>
+                <sc1:CallbackHandlerConfiguration wspp:visibility="private">
+                    <sc1:CallbackHandler name="usernameHandler" classname="ro.uti.ran.core.ws.client.renns.callback.UsernamePasswordCallback"/>
+                    <sc1:CallbackHandler name="passwordHandler" classname="ro.uti.ran.core.ws.client.renns.callback.UsernamePasswordCallback"/>
+                    <!-- Can alternatively hardcode username and/or password if desired -->
+                    <!--<sc1:CallbackHandler name="usernameHandler" default="ran_soap"/>-->
+                    <!--<sc1:CallbackHandler name="passwordHandler" default="Qazwsxedc1234!"/>-->
+                </sc1:CallbackHandlerConfiguration>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+
+</wsdl:definitions>

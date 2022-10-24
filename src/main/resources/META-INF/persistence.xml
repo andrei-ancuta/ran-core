@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+             xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence  http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+    <persistence-unit name="ran-portal" transaction-type="RESOURCE_LOCAL">
+        <description>ran-core</description>
+        <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+
+        <!--<non-jta-data-source>java:/comp/env/jdbc/DemoDS</non-jta-data-source>-->
+        <class>ro.uti.ran.core.model.portal.Componenta</class>
+        <class>ro.uti.ran.core.model.portal.Context</class>
+        <class>ro.uti.ran.core.model.portal.FluxRegistruPortal</class>
+        <class>ro.uti.ran.core.model.portal.Incarcare</class>
+        <class>ro.uti.ran.core.model.portal.IncarcareByteArray</class>
+        <class>ro.uti.ran.core.model.portal.Institutie</class>
+        <class>ro.uti.ran.core.model.portal.Judet</class>
+        <class>ro.uti.ran.core.model.portal.OperatieSesiune</class>
+        <class>ro.uti.ran.core.model.portal.Parametru</class>
+        <class>ro.uti.ran.core.model.portal.RegistruPortal</class>
+        <class>ro.uti.ran.core.model.portal.RegistruPortalDetails</class>
+        <class>ro.uti.ran.core.model.portal.Rol</class>
+        <class>ro.uti.ran.core.model.portal.RolUtilizator</class>
+        <class>ro.uti.ran.core.model.portal.Sesiune</class>
+        <class>ro.uti.ran.core.model.portal.StareIncarcare</class>
+        <class>ro.uti.ran.core.model.portal.StareRegistru</class>
+        <class>ro.uti.ran.core.model.portal.SursaRegistru</class>
+        <class>ro.uti.ran.core.model.portal.TipOperatie</class>
+        <class>ro.uti.ran.core.model.portal.UAT</class>
+        <class>ro.uti.ran.core.model.portal.UATConfig</class>
+        <class>ro.uti.ran.core.model.portal.Utilizator</class>
+        <class>ro.uti.ran.core.model.portal.UtilizatorGospodarie</class>
+        <class>ro.uti.ran.core.model.portal.Sistem</class>
+        <class>ro.uti.ran.core.model.portal.NomCapitolPortal</class>
+
+        <!--Sinonime-->
+        <class>ro.uti.ran.core.model.portal.RegistruCore</class>
+        <class>ro.uti.ran.core.model.portal.FluxRegistruCore</class>
+        <class>ro.uti.ran.core.model.portal.NomStareRegistruCore</class>
+
+        <!-- VIEWS -->
+        <class> ro.uti.ran.core.model.registru.view.ViewRegistruNomStare</class>
+
+
+        <properties>
+            <!-- OpenJPA specific properties -->
+            <!--<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>-->
+        </properties>
+    </persistence-unit>
+
+
+    <persistence-unit name="ran-registru" transaction-type="RESOURCE_LOCAL">
+        <description>ran-portal</description>
+        <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+
+
+        <class>ro.uti.ran.core.model.registru.Act</class>
+        <class>ro.uti.ran.core.model.registru.ActDetinere</class>
+        <class>ro.uti.ran.core.model.registru.Adresa</class>
+        <class>ro.uti.ran.core.model.registru.AdresaGospodarie</class>
+        <class>ro.uti.ran.core.model.registru.AnimalProd</class>
+        <class>ro.uti.ran.core.model.registru.AplicareIngrasamant</class>
+        <class>ro.uti.ran.core.model.registru.Atestat</class>
+        <class>ro.uti.ran.core.model.registru.AtestatProdus</class>
+        <class>ro.uti.ran.core.model.registru.AtestatViza</class>
+        <class>ro.uti.ran.core.model.registru.CapAnimalProd</class>
+        <class>ro.uti.ran.core.model.registru.CapAplicareIngrasamant</class>
+        <class>ro.uti.ran.core.model.registru.CapCategorieAnimal</class>
+        <class>ro.uti.ran.core.model.registru.CapCategorieFolosinta</class>
+        <class>ro.uti.ran.core.model.registru.CapCultura</class>
+        <class>ro.uti.ran.core.model.registru.CapCulturaProd</class>
+        <class>ro.uti.ran.core.model.registru.CapFructProd</class>
+        <class>ro.uti.ran.core.model.registru.CapModUtilizare</class>
+        <class>ro.uti.ran.core.model.registru.CapPlantatie</class>
+        <class>ro.uti.ran.core.model.registru.CapPlantatieProd</class>
+        <class>ro.uti.ran.core.model.registru.CapPomRazlet</class>
+        <class>ro.uti.ran.core.model.registru.CapSistemTehnic</class>
+        <class>ro.uti.ran.core.model.registru.CapSubstantaChimica</class>
+        <class>ro.uti.ran.core.model.registru.CapTerenIrigat</class>
+        <class>ro.uti.ran.core.model.registru.CategorieAnimal</class>
+        <!--<class>ro.uti.ran.core.model.registru.Cerere</class>-->
+        <!--<class>ro.uti.ran.core.model.registru.CerereDetaliu</class>-->
+        <class>ro.uti.ran.core.model.registru.CertificatCom</class>
+        <class>ro.uti.ran.core.model.registru.Cladire</class>
+        <class>ro.uti.ran.core.model.registru.Contract</class>
+        <class>ro.uti.ran.core.model.registru.Crotalie</class>
+        <class>ro.uti.ran.core.model.registru.Cultura</class>
+        <class>ro.uti.ran.core.model.registru.CulturaProd</class>
+        <class>ro.uti.ran.core.model.registru.DetinatorPf</class>
+        <class>ro.uti.ran.core.model.registru.DetinatorPj</class>
+        <!--<class>ro.uti.ran.core.model.registru.DocCerere</class>-->
+        <!--<class>ro.uti.ran.core.model.registru.FluxCerere</class>-->
+        <class>ro.uti.ran.core.model.registru.FluxRegistru</class>
+        <class>ro.uti.ran.core.model.registru.FructProd</class>
+        <class>ro.uti.ran.core.model.registru.GeolocatorAdresa</class>
+        <class>ro.uti.ran.core.model.registru.GeometrieCladire</class>
+        <class>ro.uti.ran.core.model.registru.GeometrieCultura</class>
+        <class>ro.uti.ran.core.model.registru.GeometriePlantatie</class>
+        <class>ro.uti.ran.core.model.registru.GeometrieAplicareIngras</class>
+        <class>ro.uti.ran.core.model.registru.GeometrieTerenIrigat</class>
+        <class>ro.uti.ran.core.model.registru.GeometrieParcelaTeren</class>
+        <class>ro.uti.ran.core.model.registru.GeometrieSuprafataUtiliz</class>
+        <class>ro.uti.ran.core.model.registru.Gospodarie</class>
+        <class>ro.uti.ran.core.model.registru.InventarGospUat</class>
+        <class>ro.uti.ran.core.model.registru.MembruPf</class>
+        <class>ro.uti.ran.core.model.registru.MentiuneCerereSuc</class>
+        <class>ro.uti.ran.core.model.registru.MentiuneSpeciala</class>
+        <class>ro.uti.ran.core.model.registru.NomCapitol</class>
+        <class>ro.uti.ran.core.model.registru.NomCategorieFolosinta</class>
+        <class>ro.uti.ran.core.model.registru.NomDestinatieCladire</class>
+        <class>ro.uti.ran.core.model.registru.NomFormaOrganizareRc</class>
+        <class>ro.uti.ran.core.model.registru.NomIndicativXml</class>
+        <class>ro.uti.ran.core.model.registru.NomJudet</class>
+        <class>ro.uti.ran.core.model.registru.NomLegaturaRudenie</class>
+        <class>ro.uti.ran.core.model.registru.NomLocalitate</class>
+        <class>ro.uti.ran.core.model.registru.NomModalitateDetinere</class>
+        <class>ro.uti.ran.core.model.registru.NomPlantaCultura</class>
+        <class>ro.uti.ran.core.model.registru.NomPomArbust</class>
+        <class>ro.uti.ran.core.model.registru.NomRenn</class>
+        <!--<class>ro.uti.ran.core.model.registru.NomRezolutieCerere</class>-->
+        <class>ro.uti.ran.core.model.registru.NomSpecieAnimal</class>
+        <class>ro.uti.ran.core.model.registru.NomStareCerere</class>
+        <class>ro.uti.ran.core.model.registru.NomStareRegistru</class>
+        <class>ro.uti.ran.core.model.registru.NomSursaRegistru</class>
+        <class>ro.uti.ran.core.model.registru.NomTara</class>
+        <class>ro.uti.ran.core.model.registru.NomTipAct</class>
+        <class>ro.uti.ran.core.model.registru.NomTipAdresa</class>
+        <class>ro.uti.ran.core.model.registru.NomTipCladire</class>
+        <class>ro.uti.ran.core.model.registru.NomTipContract</class>
+        <class>ro.uti.ran.core.model.registru.NomTipDetinator</class>
+        <class>ro.uti.ran.core.model.registru.NomTipExploatatie</class>
+        <class>ro.uti.ran.core.model.registru.NomTipLocalizare</class>
+        <class>ro.uti.ran.core.model.registru.NomTipRelPreemptiune</class>
+        <class>ro.uti.ran.core.model.registru.NomTipSpatiuProt</class>
+        <class>ro.uti.ran.core.model.registru.NomTipUnitateMasura</class>
+        <class>ro.uti.ran.core.model.registru.NomUat</class>
+        <class>ro.uti.ran.core.model.registru.NomUnitateMasura</class>
+        <class>ro.uti.ran.core.model.registru.ParcelaLocalizare</class>
+        <class>ro.uti.ran.core.model.registru.ParcelaTeren</class>
+        <class>ro.uti.ran.core.model.registru.PersoanaFizica</class>
+        <class>ro.uti.ran.core.model.registru.PersoanaPreemptiune</class>
+        <class>ro.uti.ran.core.model.registru.PersoanaRc</class>
+        <class>ro.uti.ran.core.model.registru.Plantatie</class>
+        <class>ro.uti.ran.core.model.registru.PlantatieProd</class>
+        <class>ro.uti.ran.core.model.registru.PomRazlet</class>
+        <class>ro.uti.ran.core.model.registru.Preemptiune</class>
+        <class>ro.uti.ran.core.model.registru.ProprietarParcela</class>
+        <class>ro.uti.ran.core.model.registru.Registru</class>
+        <class>ro.uti.ran.core.model.registru.SistemTehnic</class>
+        <class>ro.uti.ran.core.model.registru.SubstantaChimica</class>
+        <class>ro.uti.ran.core.model.registru.Succesibil</class>
+        <class>ro.uti.ran.core.model.registru.SuprafataCategorie</class>
+        <class>ro.uti.ran.core.model.registru.SuprafataUtilizare</class>
+        <class>ro.uti.ran.core.model.registru.TerenIrigat</class>
+
+
+        <!-- Sinonime -->
+        <class>ro.uti.ran.core.model.registru.UtilizatorSin</class>
+        <class>ro.uti.ran.core.model.registru.TipOperatieSin</class>
+        <class>ro.uti.ran.core.model.registru.OperatieSesiuneSin</class>
+        <class>ro.uti.ran.core.model.registru.SesiuneSin</class>
+        
+        <!-- VIEWS -->
+        <class> ro.uti.ran.core.model.registru.view.ViewUatGospodarie</class>
+       
+        <!-- SOAP MEssages -->
+        <class>ro.uti.ran.core.model.messages.MessageEntity</class>
+        <class>ro.uti.ran.core.model.messages.MessageRequestEntity</class>
+        <class>ro.uti.ran.core.model.messages.MessageResponseEntity</class>
+        <class>ro.uti.ran.core.model.messages.OperationEntity</class>
+
+        <properties>
+            <!--<property name="openjpa.Log" value="SQL=TRACE"/>-->
+            <!--<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>-->
+        </properties>
+    </persistence-unit>
+
+</persistence>

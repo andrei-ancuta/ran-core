@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT_RAN>
+    <HEADER>
+        <codXml value="130ee57b-996c-4e38-ba77-34babcef1948"/>
+        <dataExport>2015-11-12T00:55:54.780+02:00</dataExport>
+        <indicativ>ADAUGA_SI_INLOCUIESTE</indicativ>
+        <sirutaUAT>87665</sirutaUAT>
+
+    </HEADER>
+    <BODY>
+        <gospodarie identificator="6700000">
+            <anRaportare an="2016"> 
+                <capitol_5c codCapitol="CAP5c" denumire="Alte plantații pomicole aflate în teren agricol, pe raza localității">
+                    <pom_alte_plantatii_pomicole codNomenclator="5" codRand="5" denumire="Alte plantații pomicole aflate în teren agricol (Plantații de pomi de Crăciun înființate în teren agricol)">
+                        <nrARI value="0.02"/>
+                        <nrHA value="0"/>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">358433.987219374 496219.213319681 358426.881757769 496226.290905593 358345.134855077 496206.736158306 358258.42199716 496183.925972957 358284.341758217 496167.4246133 358393.785817686 496206.177551026 358433.987219374 496219.213319681 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                    </pom_alte_plantatii_pomicole>
+                    <pom_alte_plantatii_pomicole codNomenclator="4" codRand="4" denumire="Plantații de duzi în masiv">
+                        <nrARI value="0.03"/>
+                        <nrHA value="0"/>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">358203.835173513 496536.031331901 358198.522843426 496552.141256679 358149.612614831 496541.157238224 358160.540095429 496511.917620908 358172.443944757 496513.726109652 358234.926017147 496529.077332494 358232.045616998 496543.903242838 358203.835173513 496536.031331901 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                    </pom_alte_plantatii_pomicole>
+                    <pom_alte_plantatii_pomicole codNomenclator="3" codRand="3" denumire="- Arbuști fructiferi tineri">
+                        <nrARI value="0.02"/>
+                        <nrHA value="0"/>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">365238.275128049 489966.260781131 364953.425184198 489882.471823459 364955.692467812 489869.643524366 365240.406287298 489957.144498097 365238.275128049 489966.260781131 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">365225.048066705 490022.841733982 365172.840861035 490007.295766085 364944.049439634 489935.520528135 364945.743855987 489925.933224811 365228.000268101 490010.213275121 365225.048066705 490022.841733982 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                    </pom_alte_plantatii_pomicole>
+                    <pom_alte_plantatii_pomicole codNomenclator="2" codRand="2" denumire="- Arbuști fructiferi pe rod">
+                        <nrARI value="0.02"/>
+                        <nrHA value="0"/>
+                    </pom_alte_plantatii_pomicole>
+                    <pom_alte_plantatii_pomicole codNomenclator="1" codRand="1" denumire="Arbuști fructiferi total cod (02+03)">
+                        <nrARI value="0.04"/>
+                        <nrHA value="0"/>
+                    </pom_alte_plantatii_pomicole>
+                </capitol_5c>
+            </anRaportare>
+        </gospodarie>
+    </BODY>
+</DOCUMENT_RAN>
+
+
+
+
+
+

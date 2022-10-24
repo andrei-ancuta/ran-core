@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT_RAN>
+    <HEADER>
+        <codXml value="7ca4f095-6a4e-4599-9dff-897abc997f30"/>
+        <dataExport>2015-11-12T00:55:53.576+02:00</dataExport>
+        <indicativ>ADAUGA_SI_INLOCUIESTE</indicativ>
+        <sirutaUAT>87665</sirutaUAT>
+
+    </HEADER>
+    <BODY>
+        <gospodarie identificator="6700000">
+            <anRaportare an="2016">
+                <capitol_4a codCapitol="CAP4a"
+                            denumire="Suprafața arabilă situată pe raza localității - culturi în câmp">
+                    <cultura_in_camp codNomenclator="2" codRand="2" denumire="Grâu comun de toamnă">
+                        <nrARI value="0.03"/>
+                        <nrHA value="0"/>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">358835.984 503388.751 358812.065 503392.845 358809.791058941 503385.485565791 358807.375986167 503377.583368401 358836.643 503372.005 358843.376 503387.485 358835.984 503388.751 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                    </cultura_in_camp>
+                    <cultura_in_camp codNomenclator="3" codRand="3" denumire="Grâu comun de primăvară">
+                        <nrARI value="0.02"/>
+                        <nrHA value="0"/>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">364935.967585508 489981.248295029 364939.384888282 489964.008620451 365218.861848976 490049.30435254 365215.033816351 490065.679735468 364935.967585508 489981.248295029 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">358133.433231991 498507.426445744 358119.383837062 498511.465245767 358117.59540795 498483.763986881 358116.40316294 498451.892628411 358122.440643382 498400.992680951 358121.159454282 498372.011263766 358130.308530881 498370.344205888 358134.52781791 498401.492996458 358131.033495297 498437.672366746 358129.943757906 498474.706459747 358133.433231991 498507.426445744 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                    </cultura_in_camp>
+                    <cultura_in_camp codNomenclator="1" codRand="1"
+                                     denumire="Cereale pentru boabe – total (exclusiv sămânța) cod (02+...+19)">
+                        <nrARI value="0.05"/>
+                        <nrHA value="0"/>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">364958.904181324 489851.471035325 364963.571995346 489825.060411304 364964.285497819 489821.848467633 365210.130769767 489894.747966197 365249.330842986 489918.967989997 365245.200116059 489936.637978722 364958.904181324 489851.471035325 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                    </cultura_in_camp>
+                    <cultura_in_camp codNomenclator="177" codRand="177"
+                                     denumire="Total suprafață arabilă cultivată cod (01+20+27+31+35+38+48+54+62+93+99+105+169+170+171+172+173+175+176)">
+                        <nrARI value="0.05"/>
+                        <nrHA value="0"/>
+                    </cultura_in_camp>
+                    <cultura_in_camp codNomenclator="181" codRand="181" denumire="Total teren arabil cod (177+178+180)">
+                        <nrARI value="0.05"/>
+                        <nrHA value="0"/>
+                    </cultura_in_camp>
+                </capitol_4a>
+            </anRaportare>
+        </gospodarie>
+    </BODY>
+</DOCUMENT_RAN>
+
+
+
+
+

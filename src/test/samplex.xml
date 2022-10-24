@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<nomenclator>
+    <informatii-nomenclator>
+        <nume-afisat>NomCapitol</nume-afisat>
+        <data-export>2015-11-29 19:14:39</data-export>
+    </informatii-nomenclator>
+    
+    <valori>
+        <valoare cod="CAP2a" descriere="Terenuri aflate în proprietate" data-start="2015-01-01 00:00:00"
+                 data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP2b" descriere="Identificarea pe parcele a terenurilor aflate în proprietate"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP3" descriere="Modul de utilizare a suprafețelor agricole situate pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP4a" descriere="Suprafața arabilă situată pe raza localității - culturi în câmp"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP4a1"
+                 descriere="Culturi succesive în câmp, culturi intercalate, culturi modificate genetic pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP4b1" descriere="Suprafața cultivată în sere pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP4b2" descriere="Suprafața cultivată în solarii și alte spații protejate pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP4c"
+                 descriere="Suprafața cultivată cu legume și cartofi în grădinile familiale pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP1" descriere="Componența gospodăriei/exploatației agricole fără personalitate juridică"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 15:24:36"/>
+        <valoare cod="CAP5a" descriere="Numărul pomilor răzleți pe raza localității" data-start="2015-01-01 00:00:00"
+                 data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP5b" descriere="Suprafața plantațiilor pomicole și numărul pomilor pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP5c" descriere="Alte plantații pomicole aflate în teren agricol, pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP5d" descriere="Vii, pepiniere viticole și hameiști situate pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP6" descriere="Suprafețele efectiv irigate în câmp, situate pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP7"
+                 descriere="Animale domestice și/sau animale sălbatice crescute în captivitate, în condițiile legii - Situația la începutul semestrului"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP8" descriere="Evoluția efectivelor de animale, în cursul anului, aflate în proprietate"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP9"
+                 descriere="Utilaje, instalații pentru agricultură, mijloace de transport cu tracțiune animală și mecanică existente la începutul anului"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP10a"
+                 descriere="Aplicarea îngrășămintelor, amendamentelor și a pesticidelor pe suprafețe situate pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP10b"
+                 descriere="Utilizarea îngrășămintelor chimice (în echivalent substanță activă) la principalele culturi"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP11" descriere="Clădiri existente la începutul anului pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP12" descriere="Atestatele de producător și carnetele de comercializare eliberate/vizate"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP13"
+                 descriere="Mențiuni cu privire la sesizările/cererile pentru deschiderea procedurilor succesorale înaintate notarilor publici"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP14" descriere="Înregistrări privind exercitarea dreptului de preemțiune"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP15a" descriere="Înregistrări privind contractele de arendare" data-start="2015-01-01 00:00:00"
+                 data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP15b" descriere="Înregistrări privind contractele de concesiune"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP16" descriere="Mențiuni speciale" data-start="2015-01-01 00:00:00"
+                 data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP12a" descriere="Producția vegetală obținută – culturi în câmp" data-start="2015-01-01 00:00:00"
+                 data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP12a1"
+                 descriere="Producția vegetală obținută – culturi succesive în câmp, culturi intercalate, culturi modificate genetic pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP12b1" descriere="Producția vegetală obținută – suprafața cultivată in sere pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP12b2"
+                 descriere="Producția vegetală obținută – suprafața cultivată in solarii si alte spații protejate pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP12c"
+                 descriere="Producția vegetală obținută – suprafața cultivată cu legume si cartofi in grădinile familiale pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP12d" descriere="Producția de fructe obținută" data-start="2015-01-01 00:00:00"
+                 data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP12e"
+                 descriere="Producția obținută din alte plantații pomicole aflate în teren agricol, pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP12f" descriere="Producția de struguri obținută" data-start="2015-01-01 00:00:00"
+                 data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP13cent" descriere="Producția animală obținută" data-start="2015-01-01 00:00:00"
+                 data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP0_12" descriere="Date de identificare a gospodăriei deținute de persoană fizică"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP0_34" descriere="Date de identificare a gospodăriei deținute de persoană juridică"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP1_cent" descriere="Numărul pozițiilor înscrise în registrul agricol"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 15:24:36"/>
+        <valoare cod="CAP2a_cent" descriere="Terenuri aflate în proprietate situate pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP2b_cent" descriere="Identificarea pe parcele a terenurilor aflate în proprietate"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP3_cent" descriere="Modul de utilizare a suprafețelor agricole situate pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP4a_cent" descriere="Suprafața arabilă situată pe raza localității - culturi în câmp"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP4a1_cent"
+                 descriere="Culturi succesive în câmp, culturi intercalate, culturi modificate genetic pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP4b1_cent" descriere="Suprafața cultivată în sere pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP4b2_cent"
+                 descriere="Suprafața cultivată în solarii și alte spații protejate pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP4c_cent"
+                 descriere="Suprafața cultivată cu legume și cartofi în grădinile familiale pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP5a_cent" descriere="Pomi fructiferi răzleți pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP5b_cent" descriere="Suprafața plantațiilor pomicole și numărul pomilor pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP5c_cent" descriere="Alte plantații pomicole aflate în teren agricol, pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP5d_cent" descriere="Vii, pepiniere viticole și hameiști situate pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP6_cent" descriere="Suprafețele efectiv irigate în câmp, situate pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP7_cent"
+                 descriere="Animale domestice și/sau animale sălbatice crescute în captivitate, în condițiile legii - Situația la începutul semestrului"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP8_cent" descriere="Evoluția efectivelor de animale în cursul anului, aflate în proprietate"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP9_cent"
+                 descriere="Utilaje, instalații pentru agricultură, mijloace de transport cu tracțiune animală și mecanică existente la începutul anului pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP10a_cent"
+                 descriere="Aplicarea îngrășămintelor, amendamentelor și pesticidelor pe suprafețe situate pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP10b_cent"
+                 descriere="Utilizarea îngrășămintelor chimice (în echivalent substanță activă) la principalele culturi"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+        <valoare cod="CAP11_cent" descriere="Clădiri existente la începutul anului pe raza localității"
+                 data-start="2015-01-01 00:00:00" data-stop="2020-01-01 00:00:00"/>
+    </valori>
+</nomenclator>

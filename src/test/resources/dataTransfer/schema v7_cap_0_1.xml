@@ -1,0 +1,63 @@
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Alex (EMBRACE) -->
+<DOCUMENT_RAN xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <HEADER>
+        <!--Optional:-->
+        <codXml value="29f5a22b-6fc0-4349-8457-84dba3f077d4"/>
+        <dataExport>2016-02-05T12:31:45</dataExport>
+        <indicativ>ADAUGA_SI_INLOCUIESTE</indicativ>
+        <sirutaUAT>87665</sirutaUAT>
+
+    </HEADER>
+    <BODY>
+        <gospodarie identificator="66789">
+            <!--You have a CHOICE of the next 10 items at this level-->
+            <capitol_0_12 codCapitol="CAP0_12" denumire="date_identificare_gospodarie_PF">
+                <date_identificare_gospodarie_PF>
+                    <!--Optional:-->
+                    <adresaGospodarie>
+                        <!--Optional:-->
+                        <apartament/>
+                        <!--Optional:-->
+                        <bloc/>
+                        <numar>-</numar>
+                        <!--Optional:-->
+                        <scara/>
+                        <sirutaJudet>207</sirutaJudet>
+                        <sirutaLocalitate>86838</sirutaLocalitate>
+                        <sirutaUAT>87665</sirutaUAT>
+                        <strada>-</strada>
+                    </adresaGospodarie>
+                    <!--Optional:-->
+                    <codExploatatie/>
+                    <!--Optional:-->
+                    <!--codNomenclaturaStradala/-->
+                    <!--You have a CHOICE of the next 2 items at this level-->
+                    <domiciliuFiscalExtern>
+                        <adresaText>Via Santa Sofia no. 44 Milano</adresaText>
+                        <codTara>380</codTara>
+                    </domiciliuFiscalExtern>
+                    <!--Optional:-->
+                    <nrUnicIdentificare>676777297876809689</nrUnicIdentificare>
+                    <pozitieGospodarie>
+                        <pozitiaAnterioara>37</pozitiaAnterioara>
+                        <pozitieCurenta>36</pozitieCurenta>
+                        <volumul>volum gosp</volumul>
+                        <!--Optional:-->
+                        <rolNominalUnic>3333</rolNominalUnic>
+                    </pozitieGospodarie>
+                    <!--Optional:-->
+                    <!--referintaGeoXml/-->
+                    <tipDetinator>2</tipDetinator>
+                    <tipExploatatie>1</tipExploatatie>
+                    <!--volumul>volum gospodarie</volumul-->
+                    <gospodar>
+                        <nume>Cantemir</nume>
+                        <prenume>dimitrie</prenume>
+                        <initialaTata>M</initialaTata>
+                        <cnp value="1650202110251"/>
+                    </gospodar>
+                </date_identificare_gospodarie_PF>
+            </capitol_0_12>
+        </gospodarie>
+    </BODY>
+</DOCUMENT_RAN>

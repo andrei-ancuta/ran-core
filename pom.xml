@@ -1,0 +1,873 @@
+<?xml version="1.0"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ro.uti.ran.core</groupId>
+    <artifactId>ran-core</artifactId>
+    <packaging>war</packaging>
+    <name>RAN Core - v3</name>
+    <version>3.0</version>
+
+    <build>
+        <finalName>ran-core</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.openjpa</groupId>
+                <artifactId>openjpa-maven-plugin</artifactId>
+                <version>2.4.0</version>
+                <configuration>
+                    <includes>**/model/registru/*.class</includes>
+                    <includes>**/model/portal/*.class</includes>
+                    <excludes>**/model/registru/*.class</excludes>
+                    <excludes>**/model/portal/*.class</excludes>
+                    <addDefaultConstructor>true</addDefaultConstructor>
+                    <enforcePropertyRestrictions>true</enforcePropertyRestrictions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>enhancer</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>enhance</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.openjpa</groupId>
+                        <artifactId>openjpa</artifactId>
+                        <version>${openjpa.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.8</version>
+                <configuration>
+                    <testFailureIgnore>${testFailureIgnore}</testFailureIgnore>
+                    <forkMode>none</forkMode>
+                    <!--<argLine>-javaagent:"C:/.m2/repository/org/apache/openjpa/openjpa/2.4.0/openjpa-2.4.0.jar"</argLine>-->
+                    <skipTests>${skipTests}</skipTests>
+                    <includes>
+                        <include>**/NomenclatoareTest*.java</include>
+                        <include>${expressionFilter}</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.1</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+                    <doCheck>false</doCheck>
+                    <doUpdate>false</doUpdate>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/webapp</directory>
+                            <includes>
+                                <include>*.jsp</include>
+                            </includes>
+                            <filtering>true</filtering>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>artifactory</id>
+            <name>Artifactory Local Repo</name>
+            <url>http://192.168.10.166/hazi/ran-repository/</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>artifactory-plugins</id>
+            <name>Artifactory Plugin Local Repo</name>
+            <url>http://192.168.10.166/hazi/ran-repository/</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+    <inceptionYear>2015</inceptionYear>
+
+    <!-- ========================================================== -->
+    <!-- Properties -->
+    <!-- ========================================================== -->
+    <properties>
+        <war.name>ran-core-${project.version}.r${buildNumber}</war.name>
+        <compileSource>1.7</compileSource>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <testFailureIgnore>true</testFailureIgnore>
+        <skipTests>true</skipTests>
+        <argTest></argTest>
+        <expressionFilter></expressionFilter>
+
+        <javaee-api.version>6.0</javaee-api.version>
+        <javaee-api.scope>provided</javaee-api.scope>
+
+        <jaxws-rt.version>2.2.10</jaxws-rt.version>
+        <jaxws-rt.scope>compile</jaxws-rt.scope>
+
+        <jaxp-ri.version>1.4.2</jaxp-ri.version>
+
+        <jaxws-spring.version>1.9</jaxws-spring.version>
+        <jaxws-spring.scope>compile</jaxws-spring.scope>
+
+        <spring.version>4.2.0.RELEASE</spring.version>
+        <spring-security.version>4.0.2.RELEASE</spring-security.version>
+        <spring-ws-security.version>2.2.2.RELEASE</spring-ws-security.version>
+        <spring.scope>compile</spring.scope>
+        <aspectj.version>1.8.6</aspectj.version>
+
+        <org-apache-ws-security.version>2.1.7</org-apache-ws-security.version>
+
+        <spring-boot.version>1.2.5.RELEASE</spring-boot.version>
+        <spring-boot.scope>compile</spring-boot.scope>
+
+        <spring-data-jpa.version>1.8.2.RELEASE</spring-data-jpa.version>
+        <spring-data-jpa.scope>compile</spring-data-jpa.scope>
+
+        <openjpa.version>2.4.0</openjpa.version>
+        <openjpa.scope>compile</openjpa.scope>
+
+        <jackson.version>2.4.6</jackson.version>
+        <jackson.scope>compile</jackson.scope>
+
+        <slf4j.version>1.7.6</slf4j.version>
+        <slf4j.scope>compile</slf4j.scope>
+
+        <extcos.version>0.4b</extcos.version>
+
+        <logback.version>1.1.3</logback.version>
+        <logback.scope>compile</logback.scope>
+
+        <junit.version>4.11</junit.version>
+        <spring-test.version>4.1.6.RELEASE</spring-test.version>
+        <h2.version>1.4.191</h2.version>
+
+        <com.ibm.plugins>1.0</com.ibm.plugins>
+        <websphere.version>8.5.0.2</websphere.version>
+
+        <ojdbc.scope>compile</ojdbc.scope>
+
+        <!--<openam.version>12.0.0</openam.version>-->
+        <openam.version>11.0.0</openam.version>
+        <openam.scope>compile</openam.scope>
+
+        <javax.servlet.version>1.2</javax.servlet.version>
+        <javax-servlet.scope>compile</javax-servlet.scope>
+
+        <tomcat.version>8.0.23</tomcat.version>
+        <tomcat.scope>compile</tomcat.scope>
+
+        <lib.mail.version>1.4.7</lib.mail.version>
+        <lib.mail.scope>compile</lib.mail.scope>
+
+        <build.timestamp>${maven.build.timestamp}</build.timestamp>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+
+        <extDirProperties>E:\\UTI\\RAN-308</extDirProperties>
+
+        <ehcache.version>2.10.1</ehcache.version>
+
+        <cxf.version>3.0.4</cxf.version>
+    </properties>
+
+    <!-- ========================================================== -->
+    <!-- Profiles -->
+    <!-- ========================================================== -->
+    <profiles>
+
+        <!-- ========================================================== -->
+        <!-- Configurare dependinte pentru mediu deploy TOMCAT          -->
+        <!-- ========================================================== -->
+        <profile>
+            <id>TOMCAT</id>
+            <properties>
+                <!--<jaxws-rt.scope>provided</jaxws-rt.scope>-->
+                <spring-boot.scope>provided</spring-boot.scope>
+                <tomcat.scope>provided</tomcat.scope>
+                <javax-servlet.scope>provided</javax-servlet.scope>
+                <lib.mail.scope>provided</lib.mail.scope>
+            </properties>
+        </profile>
+
+        <!-- ========================================================== -->
+        <!-- Configurare dependinte pentru mediu deploy WebSphere AS    -->
+        <!-- ========================================================== -->
+        <profile>
+            <id>WAS</id>
+            <properties>
+                <!--<jaxws-rt.scope>provided</jaxws-rt.scope>-->
+                <spring-boot.scope>provided</spring-boot.scope>
+                <openjpa.scope>provided</openjpa.scope>
+                <ojdbc.scope>provided</ojdbc.scope>
+                <tomcat.scope>provided</tomcat.scope>
+                <javax-servlet.scope>provided</javax-servlet.scope>
+                <lib.mail.scope>provided</lib.mail.scope>
+            </properties>
+
+            <dependencies>
+                <dependency>
+                    <groupId>com.ibm.was.public</groupId>
+                    <artifactId>com.ibm.was.public</artifactId>
+                    <version>${websphere.version}</version>
+                    <scope>provided</scope>
+                </dependency>
+
+            </dependencies>
+
+        </profile>
+
+        <!-- ========================================================== -->
+        <!-- Configurare dependinte pentru mediu deploy de productie    -->
+        <!-- ========================================================== -->
+        <profile>
+            <id>production</id>
+            <properties>
+                <!--<jaxws-rt.scope>provided</jaxws-rt.scope>-->
+                <spring-boot.scope>provided</spring-boot.scope>
+                <openjpa.scope>provided</openjpa.scope>
+                <ojdbc.scope>provided</ojdbc.scope>
+                <tomcat.scope>provided</tomcat.scope>
+                <javax-servlet.scope>provided</javax-servlet.scope>
+                <lib.mail.scope>provided</lib.mail.scope>
+            </properties>
+
+            <dependencies>
+                <dependency>
+                    <groupId>com.ibm.was.public</groupId>
+                    <artifactId>com.ibm.was.public</artifactId>
+                    <version>${websphere.version}</version>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <includes>
+                            <include>**/*</include>
+                        </includes>
+                        <filtering>true</filtering>
+                    </resource>
+                    <resource>
+                        <directory>${extDirProperties}</directory>
+                        <includes>
+                            <include>*.properties</include>
+                        </includes>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
+
+        </profile>
+    </profiles>
+
+
+    <!-- ========================================================== -->
+    <!-- Developers -->
+    <!-- ========================================================== -->
+    <developers>
+
+    </developers>
+
+    <!-- ========================================================== -->
+    <!-- Dependencies -->
+    <!-- ========================================================== -->
+    <dependencies>
+
+        <dependency>
+            <groupId>ro.uti.ran.core</groupId>
+            <artifactId>ran-xml</artifactId>
+            <version>3.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.xml.bind</groupId>
+                    <artifactId>jaxb-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sun.xml.bind</groupId>
+                    <artifactId>jaxb-impl</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- jax-ws runtime from sun -->
+         <dependency>
+             <groupId>com.sun.xml.ws</groupId>
+             <artifactId>jaxws-rt</artifactId>
+             <version>${jaxws-rt.version}</version>
+             <scope>${jaxws-rt.scope}</scope>
+         </dependency>
+
+        <!--<dependency>
+            <groupId>org.glassfih.metro</groupId>
+            <artifactId>webservices-rt</artifactId>
+            <version>${jaxws-rt.version}</version>
+            <scope>${jaxws-rt.scope}</scope>
+
+        </dependency>-->
+
+        <!--<dependency>
+			<groupId>com.sun.xml.parsers</groupId>
+			<artifactId>jaxp-ri</artifactId>
+			<version>${jaxp-ri.version}</version>
+		</dependency>-->
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>${cxf.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>asm</artifactId>
+                    <groupId>asm</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-ws-security</artifactId>
+            <version>${cxf.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>geronimo-javamail_1.4_spec</artifactId>
+                    <groupId>org.apache.geronimo.specs</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- jax-ws runtime from glassfish Metro - project tango -->
+        <!--<dependency>-->
+            <!--<groupId>org.glassfish.metro</groupId>-->
+            <!--<artifactId>webservices-rt</artifactId>-->
+            <!--<version>2.3.1</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+
+        <!-- Configure JAX-WS with Spring -->
+        <dependency>
+            <groupId>org.jvnet.jax-ws-commons.spring</groupId>
+            <artifactId>jaxws-spring</artifactId>
+            <version>${jaxws-spring.version}</version>
+            <scope>${jaxws-spring.scope}</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-beans</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-web</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>servlet-api</artifactId>
+                    <groupId>javax.servlet</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jaxws-rt</artifactId>
+                    <groupId>com.sun.xml.ws</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Spring Framework-4.x -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+            <scope>${spring.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+            <scope>${spring.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <scope>${spring.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+            <scope>${spring.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+            <scope>${spring.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+            <scope>${spring.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+            <scope>${spring.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+            <scope>${spring.scope}</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+            <version>${spring.version}</version>
+            <scope>${spring.scope}</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-agent</artifactId>
+            <version>2.5.6</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot.version}</version>
+            <scope>${spring-boot.scope}</scope>
+        </dependency>
+
+        <!--Spring Security-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-security</artifactId>
+            <version>${spring-ws-security.version}</version>
+        </dependency>
+
+        <!--<dependency>
+            <groupId>org.apache.wss4j</groupId>
+            <artifactId>wss4j</artifactId>
+            <version>${org-apache-ws-security.version}</version>
+        </dependency>-->
+
+
+        <!--jackson mapper-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+            <scope>${jackson.scope}</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.fasterxml</groupId>
+            <artifactId>jackson-xml-databind</artifactId>
+            <version>0.6.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>${slf4j.scope}</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <scope>${logback.scope}</scope>
+        </dependency>
+
+        <!-- JPA Provider -->
+        <dependency>
+            <groupId>org.apache.openjpa</groupId>
+            <artifactId>openjpa</artifactId>
+            <version>${openjpa.version}</version>
+            <scope>${openjpa.scope}</scope>
+        </dependency>
+
+        <!-- Spring data jpa frameork -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring-data-jpa.version}</version>
+            <scope>${spring-data-jpa.scope}</scope>
+        </dependency>
+
+
+        <!-- Apache commons -->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.10</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.2</version>
+        </dependency>
+
+        <!-- Other libraries -->
+        <dependency>
+            <groupId>net.sf.extcos</groupId>
+            <artifactId>extcos</artifactId>
+            <version>${extcos.version}</version>
+        </dependency>
+
+
+        <!-- Server ftp-->
+        <dependency>
+            <groupId>org.apache.ftpserver</groupId>
+            <artifactId>ftpserver-core</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.ftpserver</groupId>
+            <artifactId>ftplet-api</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.mina</groupId>
+            <artifactId>mina-core</artifactId>
+            <!-- versionea 2.0.8 si 2.0.9 arunca o exceptie AbstractMethodError FtpHandlerAdapter.inputClosed -->
+            <version>2.0.7</version>
+        </dependency>
+        <!--h2 database-->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--Eh cache-->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>${ehcache.version}</version>
+        </dependency>
+
+
+        <!--<dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>2.11.0</version>
+        </dependency>-->
+
+
+        <!-- Oracle driver -->
+        <!--<dependency>-->
+        <!--<groupId>com.oracle</groupId>-->
+        <!--<artifactId>ojdbc14</artifactId>-->
+        <!--<version>10.2.0.4.0</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>
+            <groupId>ojdbc6</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.3</version>
+            <scope>${ojdbc.scope}</scope>
+        </dependency>-->
+        <dependency>
+            <groupId>ojdbc7</groupId>
+            <artifactId>ojdbc7</artifactId>
+            <version>ojdbc7</version>
+            <scope>${ojdbc.scope}</scope>
+        </dependency>
+
+
+        <!-- WebSphere plugins -->
+        <dependency>
+            <groupId>com.ibm.plugins</groupId>
+            <artifactId>com.ibm.plugins</artifactId>
+            <version>${com.ibm.plugins}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--OpenAM Client SDK API-->
+        <dependency>
+            <groupId>org.forgerock.openam</groupId>
+            <artifactId>openam-clientsdk</artifactId>
+            <version>${openam.version}</version>
+            <scope>${openam.scope}</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>xml-apis</artifactId>
+                    <groupId>xerces-J</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- JAVA Melody; La la la la la la ... -->
+        <dependency>
+            <groupId>net.bull.javamelody</groupId>
+            <artifactId>javamelody-core</artifactId>
+            <version>1.57.0</version>
+        </dependency>
+
+        <!-- TEST Frameworks -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${javax.servlet.version}</version>
+            <scope>${javax-servlet.scope}</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <version>${tomcat.version}</version>
+            <scope>${tomcat.scope}</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>${lib.mail.version}</version>
+            <scope>${lib.mail.scope}</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ro.uti.ran.core</groupId>
+            <artifactId>ran-core-ws-client-renns-roads</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ro.uti.ran.core</groupId>
+            <artifactId>ran-core-ws-client-renns-addresses</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+
+
+        <!-- Jasper reports -->
+
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>3.7.6</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-collections</artifactId>
+                    <groupId>commons-collections</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-beanutils</artifactId>
+                    <groupId>commons-beanutils</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-digester</artifactId>
+                    <groupId>commons-digester</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>xml-apis</artifactId>
+                    <groupId>xml-apis</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>ar.com.fdvs</groupId>
+            <artifactId>DynamicJasper</artifactId>
+            <version>3.0.13</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>xml-apis</artifactId>
+                    <groupId>xml-apis</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jasperreports</artifactId>
+                    <groupId>jasperreports</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-collections</artifactId>
+                    <groupId>commons-collections</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-beanutils</artifactId>
+                    <groupId>commons-beanutils</groupId>
+                </exclusion>
+            </exclusions>
+
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.14</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-digester</groupId>
+            <artifactId>commons-digester</artifactId>
+            <version>2.1</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.1</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jmimemagic</groupId>
+            <artifactId>jmimemagic</artifactId>
+            <version>0.1.2</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>xercesImpl</artifactId>
+                    <groupId>xerces</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>xml-apis</artifactId>
+                    <groupId>xml-apis</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>xmlParserAPIs</artifactId>
+                    <groupId>xml-apis</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.6.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.xml.wss</groupId>
+            <artifactId>xws-security</artifactId>
+            <version>3.0</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>xmldsig</artifactId>
+                    <groupId>javax.xml.crypto</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+    </dependencies>
+
+    <scm>
+        <connection>scm:svn:https://172.17.10.57/svn/RAN/apps/projects/core/sources/trunk/ran-core</connection>
+        <developerConnection>scm:svn:https://172.17.10.57/svn/RAN/apps/projects/core/sources/trunk/ran-core
+        </developerConnection>
+        <url>https://172.17.10.57/svn/RAN/apps/projects/core/sources/trunk/ran-core</url>
+    </scm>
+
+</project>

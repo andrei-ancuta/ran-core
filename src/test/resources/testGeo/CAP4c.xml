@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT_RAN>
+    <HEADER>
+        <codXml value="6521d02b-352f-44bb-a25a-6c1ffde4570a"/>
+        <dataExport>2015-11-12T00:55:54.244+02:00</dataExport>
+        <indicativ>ADAUGA_SI_INLOCUIESTE</indicativ>
+        <sirutaUAT>87665</sirutaUAT>
+
+    </HEADER>
+    <BODY>
+        <gospodarie identificator="6700000">
+            <anRaportare an="2016">
+                <capitol_4c codCapitol="CAP4c" denumire="Suprafața cultivată cu legume și cartofi în grădinile familiale pe raza localității">
+                    <cultura_in_gradini codNomenclator="263" codRand="9" denumire="Vinete">
+                        <nrMP value="1"/>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">355822.61702509 496748.840170213 355829.984937307 496822.722595486 355826.141749921 496785.574792219 355822.61702509 496748.840170213 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                    </cultura_in_gradini>
+                    <cultura_in_gradini codNomenclator="264" codRand="10" denumire="Dovleci">
+                        <nrMP value="1"/>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">365233.39898788 489987.119374439 364948.892309928 489908.119162354 364953.425184198 489882.471823459 365238.275128049 489966.260781131 365233.39898788 489987.119374439 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                    </cultura_in_gradini>
+                    <cultura_in_gradini codNomenclator="255" codRand="1" denumire="Legume în grădini familiale – total (exclusiv sămânță) cod (02+03+...+06+08+...+23)">
+                        <nrMP value="2"/>
+                    </cultura_in_gradini>
+                </capitol_4c>
+            </anRaportare>
+        </gospodarie>
+    </BODY>
+</DOCUMENT_RAN>
+
+
+

@@ -1,0 +1,29 @@
+<DOCUMENT_RAN>
+    <HEADER>
+        <!--Optional:-->
+        <codXml value="1c3ba146-a8ae-ac82-9c8d-6f6365affec3"/>
+        <dataExport>2016-02-12T04:49:45</dataExport>
+        <indicativ>ADAUGA_SI_INLOCUIESTE</indicativ>
+        <sirutaUAT>86810</sirutaUAT>
+    </HEADER>
+    <BODY>
+
+        <anRaportare an="2015">
+            <!--You have a CHOICE of the next 9 items at this level-->
+            <capitol_12a_centralizator codCapitol="CAP12a" denumire="ProducИ›ia vegetalДѓ obИ›inutДѓ вЂ“ culturi Г®n cГўmp">
+                <!--1 or more repetitions:-->
+                <cultura_in_camp codNomenclator="2" codRand="2" denumire="GrГўu comun de toamnДѓ">
+                    <nrHA value="20"/>
+                    <!--Optional:-->
+                    <prodMedieKgPerHa value="250"/>
+                    <prodTotalaTone value="5"/>
+                </cultura_in_camp>
+                <!--cultura_in_camp codNomenclator="1" codRand="1" denumire="Cereale pentru boabe вЂ“ total (exclusiv sДѓmГўnИ›a) cod (02+...+19)">
+                    <nrHA value="20"/>
+                    <prodTotalaTone value="5"/>
+                </cultura_in_camp-->
+            </capitol_12a_centralizator>
+        </anRaportare>
+
+    </BODY>
+</DOCUMENT_RAN>

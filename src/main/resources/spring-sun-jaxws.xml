@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:ws="http://jax-ws.dev.java.net/spring/core"
+       xmlns:wss="http://jax-ws.dev.java.net/spring/servlet"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://jax-ws.dev.java.net/spring/core http://jax-ws.dev.java.net/spring/core.xsd
+        http://jax-ws.dev.java.net/spring/servlet http://jax-ws.dev.java.net/spring/servlet.xsd
+        ">
+
+    <!-- ======================== -->
+    <!-- External JAX-WS Services -->
+    <!-- ======================== -->
+    <!--<wss:binding url="/service/external/...">-->
+        <!--<wss:service>-->
+            <!--<ws:service bean="#"/>-->
+        <!--</wss:service>-->
+    <!--</wss:binding>-->
+
+
+
+    <!-- ======================== -->
+    <!-- Internal JAX-WS Services -->
+    <!-- ======================== -->
+    <!-- Conform cu sectiunea comentarii:
+            http://royontechnology.blogspot.ro/2010/05/intercepting-method-calls-of-webservice.html
+            am adaugat proprietatea impl
+    -->
+    <wss:binding url="/service/internal/Sesiune">
+        <wss:service>
+            <ws:service bean="#sesiuneService">
+            	<ws:handlers>
+                    <ref bean="ranWsHandler"/>
+                    <ref bean="ranAuthorisationWsHandler"/>
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+    <wss:binding url="/service/internal/Sistem">
+        <wss:service>
+            <ws:service bean="#sistemService">
+            	<ws:handlers>
+                    <ref bean="ranWsHandler" />
+                    <ref bean="ranAuthorisationWsHandler"/>
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+    <wss:binding url="/service/internal/Parametru">
+        <wss:service>
+            <ws:service bean="#parametruService">
+            	<ws:handlers>
+                    <ref bean="ranWsHandler"/>
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+    <wss:binding url="/service/internal/InfoUtilizator">
+        <wss:service >
+            <ws:service bean="#infoUtilizatorService">
+                <ws:handlers>
+                    <ref bean="ranWsHandler"/>
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+    <wss:binding url="/service/internal/AdminUtilizator">
+        <wss:service>
+            <ws:service bean="#adminUtilizatorService">
+            	<ws:handlers>
+                    <ref bean="ranWsHandler"/>
+                    <ref bean="ranAuthorisationWsHandler"/>
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+    <wss:binding url="/service/internal/Nomenclator">
+        <wss:service>
+            <ws:service bean="#nomenclatorWS">
+            	<ws:handlers>
+                    <ref bean="ranWsHandler"/>
+                    <ref bean="ranAuthorisationWsHandler"/>
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+    <wss:binding url="/service/internal/IncarcareDate">
+        <wss:service>
+            <ws:service bean="#incarcareDateService">
+            	<ws:handlers>
+                    <ref bean="ranWsHandler"/>
+                    <ref bean="ranAuthorisationWsHandler"/>
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+    <wss:binding url="/service/internal/RegistruDate">
+        <wss:service>
+            <ws:service bean="#registruDateService">
+            	<ws:handlers>
+                    <ref bean="ranWsHandler"/>
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+    <wss:binding url="/service/internal/TransmitereDate">
+        <wss:service>
+            <ws:service bean="#internalTransmitereDateImpl">
+            	<ws:handlers>
+                    <ref bean="ranWsHandler"/>
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+    <wss:binding url="/service/internal/InterogareDate">
+        <wss:service>
+            <ws:service bean="#internalInterogareDateImpl">
+            	<ws:handlers>
+                    <ref bean="ranWsHandler"/>
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+   <wss:binding url="/service/internal/InterogareDateCentralizatoare">
+        <wss:service>
+            <ws:service bean="#internalInterogareDateCentralizatoareImpl">
+            	<ref bean="ranWsHandler"/>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+    <wss:binding url="/service/intenal/Nomenclatoare">
+        <wss:service>
+            <ws:service bean="#nomenclatorInternService" impl="ro.uti.ran.core.ws.internal.nomenclatoare.NomenclatoareInternImpl">
+                <ws:handlers>
+                    <ref bean="ranWsHandler"/>
+                    <ref bean="ranAuthorisationWsHandler"/>
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+    <wss:binding url="/service/internal/UtilizatorGosp">
+        <wss:service>
+            <ws:service bean="#UtilizatorGospService" impl="ro.uti.ran.core.ws.internal.gospodarii.UtilizatorGospServiceImpl">
+                <ws:handlers>
+                    <ref bean="ranWsHandler" />
+                    <ref bean="ranAuthorisationWsHandler"/>
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+    <!-- EXTERNAL SERVICES -->
+    <wss:binding url="/service/external/TransmitereDate">
+        <wss:service>
+            <ws:service bean="#transmitereDateExternService">
+                <ws:handlers>
+                    <ref bean="ranWsHandler"/>
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+    <wss:binding url="/service/external/InterogareDate">
+        <wss:service>
+            <ws:service bean="#interogareDateExternService">
+                <ws:handlers>
+                    <ref bean="ranWsHandler"/>
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+    <wss:binding url="/service/external/InterogareDateCentralizatoare">
+        <wss:service>
+            <ws:service bean="#interogareDateCentralizatoareExternService">
+                <ws:handlers>
+                    <ref bean="ranWsHandler" />
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+    <wss:binding url="/service/external/Nomenclatoare">
+        <wss:service>
+            <ws:service bean="#nomenclatorExternService">
+                <ws:handlers>
+                    <ref bean="ranWsHandler" />
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+    <wss:binding url="/service/internal/NotificariSistem">
+        <wss:service>
+            <ws:service bean="#NotificariSistemWS">
+            	<ws:handlers>
+                    <ref bean="ranWsHandler" />
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+    <wss:binding url="/service/internal/Transmisii">
+        <wss:service>
+            <ws:service bean="#transmisiiService">
+                <ws:handlers>
+                    <ref bean="ranWsHandler" />
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+    <!-- /service/internal/TotalGospodarie s-a modificat in  /service/internal/InventarGospUat-->
+    <wss:binding url="/service/internal/InventarGospUat">
+        <wss:service>
+            <ws:service bean="#InventarGospUatService">
+                <ws:handlers>
+                    <ref bean="ranWsHandler"/>
+                    <ref bean="ranAuthorisationWsHandler"/>
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+    <wss:binding url="/service/internal/JurnalAuditare">
+        <wss:service>
+            <ws:service bean="#JurnalizareOperatiiService">
+                <ws:handlers>
+                    <ref bean="ranWsHandler" />
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+    <wss:binding url="/service/internal/Renns">
+        <wss:service>
+            <ws:service bean="#rennsService">
+                <ws:handlers>
+                    <ref bean="ranWsHandler" />
+                </ws:handlers>
+            </ws:service>
+        </wss:service>
+    </wss:binding>
+
+
+    
+</beans>

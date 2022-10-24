@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:cxf="http://cxf.apache.org/core"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+         http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+         http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+    <!-- Interceptors -->
+    <bean id="logIn" class="org.apache.cxf.interceptor.LoggingInInterceptor">
+        <property name="prettyLogging" value="true"/>
+    </bean>
+    <bean id="logOut" class="org.apache.cxf.interceptor.LoggingOutInterceptor">
+        <property name="prettyLogging" value="true"/>
+    </bean>
+    <bean id="saajOut" class="org.apache.cxf.binding.soap.saaj.SAAJOutInterceptor"/>
+    <bean id="wss4jOut" class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
+        <constructor-arg>
+            <map>
+                <entry key="action" value="UsernameToken Timestamp"/>
+                <entry key="user" value="ws-client"/>
+                <entry key="passwordType" value="PasswordText"/>
+                <entry key="passwordCallbackClass" value="ro.uti.ran.core.ws.client.renns.callback.PWCallbackHandler"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- The CXF Bus -->
+    <cxf:bus>
+        <cxf:features>
+            <cxf:logging/>
+        </cxf:features>
+
+        <cxf:inInterceptors>
+            <ref bean="logIn"/>
+        </cxf:inInterceptors>
+        <cxf:outInterceptors>
+            <ref bean="logOut"/>
+        </cxf:outInterceptors>
+        <cxf:inFaultInterceptors>
+            <ref bean="logIn"/>
+        </cxf:inFaultInterceptors>
+        <cxf:outFaultInterceptors>
+            <ref bean="logOut"/>
+        </cxf:outFaultInterceptors>
+    </cxf:bus>
+
+    <!--wsdlLocation="renns/roads/renns-roads.wsdl"-->
+
+    <!-- Client Proxies -->
+    <jaxws:client
+            name="{http://ancpi.ro/renns/soap/road}RoadsPortService"
+            address="http://renns.ancpi.ro/renns-public-test/soapws/roads.wsdl"
+            serviceClass="ro.uti.ran.core.ws.client.renns.roads.RoadsPort">
+
+        <jaxws:outInterceptors>
+            <ref bean="saajOut"/>
+            <ref bean="wss4jOut"/>
+        </jaxws:outInterceptors>
+
+        <jaxws:features>
+            <bean class="org.apache.cxf.feature.LoggingFeature"/>
+        </jaxws:features>
+    </jaxws:client>
+
+    <!--wsdlLocation="renns/addresses/renns-addresses.wsdl"-->
+
+    <jaxws:client
+            name="{http://ancpi.ro/renns/soap/address}addressWS1PortService"
+            address="http://renns.ancpi.ro/renns-public-test/soapws/addressWS1.wsdl"
+            serviceClass="ro.uti.ran.core.ws.client.renns.addresses.AddressWS1Port"
+            serviceName="addressWS1PortService">
+
+        <jaxws:outInterceptors>
+            <ref bean="saajOut"/>
+            <ref bean="wss4jOut"/>
+        </jaxws:outInterceptors>
+
+        <jaxws:features>
+            <bean class="org.apache.cxf.feature.LoggingFeature"/>
+        </jaxws:features>
+    </jaxws:client>
+
+</beans>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://ancpi.ro/renns/soap/road"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ancpi.ro/renns/soap/road"
+                  xmlns:wsp="http://www.w3.org/ns/ws-policy"
+                  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+                  xmlns:sc="http://schemas.sun.com/2006/03/wss/client"
+                  xmlns:wspp="http://java.sun.com/xml/ns/wsit/policy"
+>
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+                   xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.1"
+                   targetNamespace="http://ancpi.ro/renns/soap/road">
+
+            <xs:element name="getRoadWSRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="1" minOccurs="1" name="county" type="xs:string"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="localityName" type="xs:string"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="status" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getRoadWSResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="roadWS" type="tns:roadWS"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:complexType name="roadWS">
+                <xs:sequence>
+                    <xs:element name="name" type="xs:string"/>
+                    <xs:element name="type" type="xs:string"/>
+                    <xs:element name="county" type="xs:string"/>
+                    <xs:element name="uat" type="xs:string"/>
+                    <xs:element name="siruta" type="xs:string"/>
+                    <xs:element name="localityName" type="xs:string"/>
+                    <xs:element name="hcl" type="xs:string"/>
+                    <xs:element name="date" type="xs:date"/>
+                    <xs:element name="status" type="xs:string"/>
+                    <xs:element name="hclDate" type="xs:date"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:annotation>
+                <xs:appinfo>
+                    <jaxb:globalBindings>
+                        <jaxb:javaType name="java.util.Calendar"
+                                       parseMethod="javax.xml.bind.DatatypeConverter.parseDateTime"
+                                       printMethod="javax.xml.bind.DatatypeConverter.printDateTime" xmlType="xs:date"/>
+                    </jaxb:globalBindings>
+                </xs:appinfo>
+            </xs:annotation>
+
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getRoadWSResponse">
+        <wsdl:part element="tns:getRoadWSResponse" name="getRoadWSResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getRoadWSRequest">
+        <wsdl:part element="tns:getRoadWSRequest" name="getRoadWSRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="RoadsPort">
+        <wsdl:operation name="getRoadWS">
+            <wsdl:input message="tns:getRoadWSRequest" name="getRoadWSRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:getRoadWSResponse" name="getRoadWSResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="RoadsPortSoap11" type="tns:RoadsPort">
+        <wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#UsernameToken"/>
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getRoadWS">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getRoadWSRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getRoadWSResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="RoadsPortService">
+        <wsdl:port binding="tns:RoadsPortSoap11" name="RoadsPortSoap11">
+            <soap:address location="http://renns.ancpi.ro/renns-public-test/soapws/"/>
+        </wsdl:port>
+    </wsdl:service>
+    <!-- Policy for Username Token with plaintext password, sent from client to
+      server only -->
+    <wsp:Policy wsu:Id="UsernameToken">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sc:CallbackHandlerConfiguration wspp:visibility="private">
+                    <sc:CallbackHandler name="usernameHandler"
+                                        classname="ro.uti.ran.core.ws.client.renns.callback.UsernamePasswordCallback"/>
+                    <sc:CallbackHandler name="passwordHandler"
+                                        classname="ro.uti.ran.core.ws.client.renns.callback.UsernamePasswordCallback"/>
+
+                    <!-- Can alternatively hardcode username and/or password if desired -->
+                    <!--<sc:CallbackHandler name="usernameHandler" default="ran_soap"/>-->
+                    <!--<sc:CallbackHandler name="passwordHandler" default="Qazwsxedc1234!"/>-->
+                </sc:CallbackHandlerConfiguration>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+</wsdl:definitions>

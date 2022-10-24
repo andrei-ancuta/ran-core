@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT_RAN>
+    <HEADER>
+        <codXml value="2f1ac934-2922-4ede-b974-e6fd166d9bfd"/>
+        <dataExport>2015-11-12T00:55:54.592+02:00</dataExport>
+        <indicativ>ADAUGA_SI_INLOCUIESTE</indicativ>
+        <sirutaUAT>87665</sirutaUAT>
+
+    </HEADER>
+    <BODY>
+        <gospodarie identificator="6700000">
+            <anRaportare an="2016">
+                <capitol_5b codCapitol="CAP5b" denumire="Suprafața plantațiilor pomicole și numărul pomilor pe raza localității">
+                    <pom_plantatii_pomicole codNomenclator="3" codRand="3" denumire="Jonathan">
+                        <nrARI value="0.02"/>
+                        <nrHA value="0"/>
+                        <nrPomiPeRod value="20"/>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">359848.666619271 493028.117132089 359848.827215539 493034.746414548 359840.994482192 493034.364525726 359819.979825917 493033.791715776 359804.123268356 493033.98268347 359792.46449423 493032.850940277 359794.389969015 493008.204337023 359795.717421783 492991.212578948 359830.688217468 492993.655803805 359846.856433619 493024.539832145 359848.666619271 493028.117132089 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                    </pom_plantatii_pomicole>
+                    <pom_plantatii_pomicole codNomenclator="5" codRand="5" denumire="Idared">
+                        <nrARI value="0.02"/>
+                        <nrHA value="0"/>
+                        <nrPomiPeRod value="10"/>
+                    </pom_plantatii_pomicole>
+                    <pom_plantatii_pomicole codNomenclator="4" codRand="4" denumire="Golden Delicios">
+                        <nrARI value="0.01"/>
+                        <nrHA value="0"/>
+                        <nrPomiPeRod value="20"/>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">364891.464577868 489714.601177532 364906.015794846 489700.047948106 364984.733773196 489754.282372428 364978.120163152 489768.835077064 364891.464577868 489714.601177532 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                    </pom_plantatii_pomicole>
+                    <pom_plantatii_pomicole codNomenclator="2" codRand="2" denumire="Meri cod (03+.....+07)">
+                        <nrARI value="0.05"/>
+                        <nrHA value="0"/>
+                        <nrPomiPeRod value="50"/>
+                    </pom_plantatii_pomicole>
+                    <pom_plantatii_pomicole codNomenclator="1" codRand="1" denumire="Pomi fructiferi - total cod (02+08+13+... ...+22+25+26)">
+                        <nrARI value="0.05"/>
+                        <nrHA value="0"/>
+                        <nrPomiPeRod value="50"/>
+                    </pom_plantatii_pomicole>
+                </capitol_5b>
+            </anRaportare>
+        </gospodarie>
+    </BODY>
+</DOCUMENT_RAN>
+
+
+
+

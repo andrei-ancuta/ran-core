@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT_RAN>
+    <HEADER>
+        <codXml value="e65f290c-9f2f-4d43-812b-72471935d6b0"/>
+        <dataExport>2016-02-12T00:55:53.312+02:00</dataExport>
+        <indicativ>ADAUGA_SI_INLOCUIESTE</indicativ>
+        <sirutaUAT>86810</sirutaUAT>
+
+    </HEADER>
+    <BODY>
+        <gospodarie identificator="66789">
+            <anRaportare an="2015">
+                <capitol_3 codCapitol="CAP3"
+                           denumire="Modul de utilizare a suprafețelor agricole situate pe raza localității">
+                    <mod_utilizare_suprafete_agricole codNomenclator="10" codRand="10" denumire="a) în arendă">
+                        <nrARI value="0.01"/>
+                        <nrHA value="0"/>
+                    </mod_utilizare_suprafete_agricole>
+                    <mod_utilizare_suprafete_agricole codNomenclator="11" codRand="11" denumire="b) în parte">
+                        <nrARI value="0.01"/>
+                        <nrHA value="0"/>
+                    </mod_utilizare_suprafete_agricole>
+                    <mod_utilizare_suprafete_agricole codNomenclator="12" codRand="12" denumire="c) cu titlu gratuit">
+                        <nrARI value="0.01"/>
+                        <nrHA value="0"/>
+                    </mod_utilizare_suprafete_agricole>
+                    <mod_utilizare_suprafete_agricole codNomenclator="13" codRand="13" denumire="d) în concesiune">
+                        <nrARI value="0.01"/>
+                        <nrHA value="0"/>
+                    </mod_utilizare_suprafete_agricole>
+                    <mod_utilizare_suprafete_agricole codNomenclator="14" codRand="14" denumire="e) în asociere">
+                        <nrARI value="0.01"/>
+                        <nrHA value="0"/>
+                    </mod_utilizare_suprafete_agricole>
+                    <mod_utilizare_suprafete_agricole codNomenclator="15" codRand="15" denumire="f) sub alte forme">
+                        <nrARI value="0.01"/>
+                        <nrHA value="0"/>
+                    </mod_utilizare_suprafete_agricole>
+                    <mod_utilizare_suprafete_agricole codNomenclator="3" codRand="3" denumire="a) în arendă">
+                        <nrARI value="0.01"/>
+                        <nrHA value="0"/>
+                    </mod_utilizare_suprafete_agricole>
+                    <mod_utilizare_suprafete_agricole codNomenclator="4" codRand="4" denumire="b) în parte">
+                        <nrARI value="0.11"/>
+                        <nrHA value="0"/>
+                    </mod_utilizare_suprafete_agricole>
+                    <mod_utilizare_suprafete_agricole codNomenclator="2" codRand="2"
+                                                      denumire="Suprafața agricolă primită">
+                        <nrARI value="0.12"/>
+                        <nrHA value="0"/>
+                    </mod_utilizare_suprafete_agricole>
+                    <mod_utilizare_suprafete_agricole codNomenclator="9" codRand="9" denumire="Suprafața agricolă dată">
+                        <nrARI value="0.06"/>
+                        <nrHA value="0"/>
+                    </mod_utilizare_suprafete_agricole>
+                    <mod_utilizare_suprafete_agricole codNomenclator="17" codRand="17"
+                                                      denumire="Suprafața agricolă utilizată">
+                        <nrARI value="0.06"/>
+                        <nrHA value="0"/>
+                    </mod_utilizare_suprafete_agricole>
+                </capitol_3>
+
+            </anRaportare>
+        </gospodarie>
+    </BODY>
+</DOCUMENT_RAN>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT_RAN>
+    <HEADER>
+        <codXml value="ee0abcfa-1b71-48df-89b6-4ac5def2e83a"/>
+        <dataExport>2015-11-12T00:55:53.739+02:00</dataExport>
+        <indicativ>ADAUGA_SI_INLOCUIESTE</indicativ>
+        <sirutaUAT>87665</sirutaUAT>
+
+    </HEADER>
+    <BODY>
+        <gospodarie identificator="6700000">
+            <anRaportare an="2016">
+                <capitol_4a1 codCapitol="CAP4a1"
+                             denumire="Culturi succesive în câmp, culturi intercalate, culturi modificate genetic pe raza localității">
+                    <cultura_speciala_in_camp codNomenclator="184" codRand="3" denumire=" - porumb verde furajer">
+                        <nrARI value="0.03"/>
+                        <nrHA value="0"/>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">360199.890999642 493861.335769998 360198.756585789 493870.083344946 360168.197405687 493864.469260611 360126.865240155 493855.514244399 360127.479334874 493845.783393261 360174.556088452 493856.997074505 360199.890999642 493861.335769998 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                    </cultura_speciala_in_camp>
+                    <cultura_speciala_in_camp codNomenclator="197" codRand="16" denumire="Căpșuni">
+                        <nrARI value="0.02"/>
+                        <nrHA value="0"/>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">365243.033938569 489945.903979886 364957.372964787 489860.134899833 364958.904181324 489851.471035325 365245.200116059 489936.637978722 365243.033938569 489945.903979886 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                    </cultura_speciala_in_camp>
+                    <cultura_speciala_in_camp codNomenclator="191" codRand="10"
+                                              denumire="Culturi intercalate – total Cod (11+12+16+...+22)">
+                        <nrARI value="0.02"/>
+                        <nrHA value="0"/>
+                    </cultura_speciala_in_camp>
+                    <cultura_speciala_in_camp codNomenclator="182" codRand="1"
+                                              denumire="Culturi succesive în câmp cod (02+...+09)">
+                        <nrARI value="0.03"/>
+                        <nrHA value="0"/>
+                    </cultura_speciala_in_camp>
+                </capitol_4a1>
+
+            </anRaportare>
+        </gospodarie>
+    </BODY>
+</DOCUMENT_RAN>
+
+
+
+

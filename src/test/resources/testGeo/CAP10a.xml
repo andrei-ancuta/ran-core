@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT_RAN>
+    <HEADER>
+        <codXml value="3a98fe30-3ad0-456b-8507-e4ffb10d0ea7"/>
+        <dataExport>2015-11-12T00:55:55.810+02:00</dataExport>
+        <indicativ>ADAUGA_SI_INLOCUIESTE</indicativ>
+        <sirutaUAT>87665</sirutaUAT>
+
+    </HEADER>
+    <BODY>
+        <gospodarie identificator="6700000">
+            <anRaportare an="2016">  
+                <capitol_10a codCapitol="CAP10a" denumire="Aplicarea îngrășămintelor, amendamentelor și a pesticidelor pe suprafețe situate pe raza localității">
+                    <substanta_chimica_agricola codNomenclator="3" codRand="3" denumire="b) Fosfatice">
+                        <nrHA value="1"/>
+                        <nrKG value="200"/>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">358961.94707715 491544.38946922 358973.84707072 491540.88947111 359068.34701969 491708.88938039 359058.54702498 491712.3893785 358961.94707715 491544.38946922 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                    </substanta_chimica_agricola>
+                    <substanta_chimica_agricola codNomenclator="2" codRand="2" denumire="a) Azotoase">
+                        <nrHA value="3"/>
+                        <nrKG value="200"/>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">358536.26716079 494911.85645103 358555.373690901 494956.575331523 358516.084 494939.986 358512.666801025 494926.197985775 358510.083288344 494901.195026706 358508.654820749 494889.181490636 358506.879009265 494871.711928233 358505.572754777 494848.188905484 358506.705599877 494829.914243737 358509.696572342 494818.239117026 358515.069467071 494807.750980765 358532.549401572 494786.558859827 358537.377745738 494779.592720824 358546.785717035 494763.636352939 358548.977197684 494745.45807985 358549.66852286 494743.438532994 358574.675533808 494752.974897093 358586.190357327 494758.81942172 358578.673625941 494771.600018328 358542.456758488 494814.260858102 358528.01436386 494848.625503209 358536.26716079 494911.85645103 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">365215.033816351 490065.679735468 365211.729744843 490079.813451622 364933.699346289 489994.081851713 364935.967585508 489981.248295029 365215.033816351 490065.679735468 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                    </substanta_chimica_agricola>
+                    <substanta_chimica_agricola codNomenclator="1" codRand="1" denumire="Îngrășăminte chimice – total (în echivalent substanță activă)">
+                        <nrHA value="0"/>
+                        <nrKG value="0"/>
+                    </substanta_chimica_agricola>
+                    <substanta_chimica_agricola codNomenclator="5" codRand="5" denumire="Îngrășăminte naturale">
+                        <nrHA value="1"/>
+                        <nrKG value="200"/>
+                    </substanta_chimica_agricola>
+                    <substanta_chimica_agricola codNomenclator="4" codRand="4" denumire="c) Potasice">
+                        <nrHA value="1"/>
+                        <nrKG value="200"/>
+                    </substanta_chimica_agricola>
+                </capitol_10a>
+            </anRaportare>
+        </gospodarie>
+    </BODY>
+</DOCUMENT_RAN>
+
+
+
+
+

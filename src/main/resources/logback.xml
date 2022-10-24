@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true">
+
+    <property resource="logback.properties"/>
+    <property name="pattern" value="[WS][%-5p] [%d{dd-MM-yy HH:mm:ss}][%15c{1}] - %m%n"/>
+
+    <appender name="console-appender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="file-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${log.dir}/ran-core.log</File>
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <maxIndex>50</maxIndex>
+            <maxHistory>30</maxHistory>
+            <fileNamePattern>${log.dir}/ran-core.%i</fileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>5MB</maxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <logger name="ro.uti.ran.core" level="ERROR"/>
+    <logger name="org.apache.ftpserver" level="ERROR"/>
+    <logger name="org.apache.mina" level="ERROR"/>
+    <logger name="org.apache.cxf" level="ERROR"/>
+    <!--<logger name="org.springframework.transaction" level="DEBUG"/>-->
+
+    <logger name="org.springframework.boot" level="ERROR">
+        <appender-ref ref="file-appender"/>
+    </logger>
+
+    <root level="ERROR">
+        <appender-ref ref="console-appender"/>
+        <appender-ref ref="file-appender"/>
+    </root>
+</configuration>

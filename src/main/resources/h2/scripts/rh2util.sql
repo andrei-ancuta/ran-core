@@ -1,0 +1,5 @@
+CREATE TRIGGER IF NOT EXISTS INV_INS BEFORE INSERT ON GOSPODARIE FOR EACH ROW CALL "ro.uti.ran.core.utils.h2.lastModifiedTrigger";
+
+
+
+

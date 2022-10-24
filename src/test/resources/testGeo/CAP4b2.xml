@@ -1,0 +1,30 @@
+<DOCUMENT_RAN>
+    <HEADER>
+        <codXml value="baffd7f9-5065-49ff-9328-8134508296d"/>
+        <dataExport>2015-11-12T23:23:41.567+02:00</dataExport>
+        <indicativ>ADAUGA_SI_INLOCUIESTE</indicativ>
+        <sirutaUAT>87665</sirutaUAT>
+    </HEADER>
+    <BODY>
+        <gospodarie identificator="6700000">
+            <anRaportare an="2016">
+                <capitol_4b2 codCapitol="CAP4b2" denumire="Suprafața cultivată în solarii și alte spații protejate pe raza localității">
+                    <cultura_in_spatiu_protejat codNomenclator="11" codRand="11" denumire="Ardei">
+                        <nrMP value="765"/>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">365617.779314697 490108.781919256 365529.140152945 490064.470147808 365566.83612594 489959.294791295 365651.509477715 490045.279014866 365617.779314697 490108.781919256 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">366369.490119877 491413.861376462 366362.911425828 491425.963946549 366341.935063788 491409.083092821 366273.816399673 491358.583499332 366275.259955655 491350.210874637 366261.979240622 491338.951137979 366271.870810668 491328.658558336 366369.490119877 491413.861376462 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                    </cultura_in_spatiu_protejat>
+                    <cultura_in_spatiu_protejat codNomenclator="1" codRand="1" denumire="Legume în sere și/sau solarii – total exclusiv sămânță cod (02+03+...+09+11+...+16)">
+                        <nrMP value="765"/>
+                    </cultura_in_spatiu_protejat>
+                    <cultura_in_spatiu_protejat codNomenclator="23" codRand="23" denumire="Suprafața utilizată în sere și/sau solarii cod (01+17)">
+                        <nrMP value="765"/>
+                    </cultura_in_spatiu_protejat>
+                </capitol_4b2>
+            </anRaportare>
+        </gospodarie>
+    </BODY>
+</DOCUMENT_RAN>
+
+
+

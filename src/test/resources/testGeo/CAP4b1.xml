@@ -1,0 +1,30 @@
+<DOCUMENT_RAN>
+    <HEADER>
+        <codXml value="b9caedf9-5ab5-41cf-9818-813456a8296d"/>
+        <dataExport>2015-11-12T23:23:41.567+02:00</dataExport>
+        <indicativ>ADAUGA_SI_INLOCUIESTE</indicativ>
+        <sirutaUAT>87665</sirutaUAT>
+    </HEADER>
+    <BODY>
+       <gospodarie identificator="6700000">
+            <anRaportare an="2016">
+                <capitol_4b1 codCapitol="CAP4b1" denumire="Suprafața cultivată în sere pe raza localității">
+                    <cultura_in_sere codNomenclator="9" codRand="9" denumire="Castraveți">
+                        <nrMP value="1567"/>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">365209.640492455 489883.913215969 365168.62790563 489856.796153753 365273.127408188 489691.422891826 365306.864376535 489724.493667953 365209.640492455 489883.913215969 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                        <referintaGeoXml><![CDATA[<gml:Polygon srsName="EPSG:31700" xmlns:gml="http://www.opengis.net/gml"><gml:exterior><gml:LinearRing><gml:posList srsDimension="2">366414.746629009 491190.289288559 366397.354200132 491191.652040092 366403.003996619 491179.775295225 366413.123890436 491161.288262798 366420.08812003 491155.850902997 366428.031695656 491157.047118057 366437.825144591 491161.614506889 366450.121367983 491163.245715968 366464.956961364 491165.178391177 366480.626475105 491164.090914665 366492.487423473 491161.045996363 366501.410345132 491153.759927629 366504.783646866 491146.256364731 366505.110091748 491135.272895202 366500.120316896 491124.826557962 366514.880242877 491135.467136425 366519.546184043 491139.900127632 366532.239754984 491156.126885083 366414.746629009 491190.289288559 </gml:posList></gml:LinearRing></gml:exterior></gml:Polygon>]]></referintaGeoXml>
+                    </cultura_in_sere>
+                    <cultura_in_sere codNomenclator="1" codRand="1" denumire="Legume în sere și/sau solarii – total exclusiv sămânță cod (02+03+...+09+11+...+16)">
+                        <nrMP value="1567"/>
+                    </cultura_in_sere>
+                    <cultura_in_sere codNomenclator="23" codRand="23" denumire="Suprafața utilizată în sere și/sau solarii cod (01+17)">
+                        <nrMP value="1567"/>
+                    </cultura_in_sere>
+                </capitol_4b1>
+            </anRaportare>
+        </gospodarie>
+    </BODY>
+</DOCUMENT_RAN>
+
+
+
