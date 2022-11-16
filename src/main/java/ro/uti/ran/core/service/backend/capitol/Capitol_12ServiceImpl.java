@@ -1,5 +1,6 @@
 package ro.uti.ran.core.service.backend.capitol;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.uti.ran.core.exception.DateRegistruValidationException;
@@ -59,6 +60,10 @@ public class Capitol_12ServiceImpl extends AbstractCapitolFara0XXService {
             List<String> xmlRands = new ArrayList<>();
             for (Atestat atestat : gospodarie.getAtestats()) {
                 String rand = atestat.getSerieNumarAtestat().toLowerCase();
+                /* Validari pentru campurile care au constrangere in baza de date, dar nu si in schema xml si genereaza erori ORA-12899*/
+                if (rand.length() > 20) {
+                    throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "serieNumar", rand.length(), 20);
+                }
                 /*unicitate la ATESTAT*/
                 if (xmlRands.contains(rand)) {
                     throw new DateRegistruValidationException(DateRegistruValidationCodes.ATESTAT_DUBLICAT, atestat.getSerieNumarAtestat());
@@ -70,6 +75,10 @@ public class Capitol_12ServiceImpl extends AbstractCapitolFara0XXService {
                     List<String> xmlSubRand = new ArrayList<>();
                     for (AtestatProdus atestatProdus : atestat.getAtestatProduses()) {
                         String subRand = atestatProdus.getDenumireProdus().toLowerCase();
+                        /* Validari pentru campurile care au constrangere in baza de date, dar nu si in schema xml si genereaza erori ORA-12899*/
+                        if (subRand.length() > 100) {
+                            throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "denumire", subRand.length(), 100);
+                        }
                         /*unicitate la ATESTAT_PRODUS*/
                         if (xmlSubRand.contains(subRand)) {
                             throw new DateRegistruValidationException(DateRegistruValidationCodes.ATESTAT_ATESTAT_PRODUS_DUBLICATE,
@@ -101,6 +110,10 @@ public class Capitol_12ServiceImpl extends AbstractCapitolFara0XXService {
                 if (atestat.getCertificatComs() != null && !atestat.getCertificatComs().isEmpty()) {
                     List<CertificatComHelper> xmlSubRand = new ArrayList<>();
                     for (CertificatCom certificatCom : atestat.getCertificatComs()) {
+                        /* Validari pentru campurile care au constrangere in baza de date, dar nu si in schema xml si genereaza erori ORA-12899*/
+                        if (null != certificatCom.getSerie() && certificatCom.getSerie().length() > 10) {
+                            throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "serie", certificatCom.getSerie().length(), 10);
+                        }
                         CertificatComHelper subRand = new CertificatComHelper(certificatCom);
                         /*unicitate la CERTIFICAT_COM*/
                         if (xmlSubRand.contains(subRand)) {
@@ -114,15 +127,22 @@ public class Capitol_12ServiceImpl extends AbstractCapitolFara0XXService {
                         }
                     }
                 }
-                 /*act - NOM_TIP_ACT*/
+                /*act - NOM_TIP_ACT*/
                 if (atestat.getAct() != null) {
+                    if(StringUtils.isBlank(atestat.getAct().getNumarAct())) {
+                        throw new DateRegistruValidationException(DateRegistruValidationCodes.NUMAR_AVIZ_CONSULTATIV_NEDEFINIT);
+                    }
+                    /* Validari pentru campurile care au constrangere in baza de date, dar nu si in schema xml si genereaza erori ORA-12899*/
+                    if (atestat.getAct().getNumarAct().length() > 20) {
+                        throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "nrAvizConsulativ", atestat.getAct().getNumarAct().length(), 20);
+                    }
                     String codValue = atestat.getAct().getNomTipAct().getCod();
                     ro.uti.ran.core.model.registru.NomTipAct nomTipAct = nomSrv.getNomenclatorForStringParam(NomTipAct, codValue, dataRaportare);
                     if (nomTipAct == null) {
                         throw new DateRegistruValidationException(DateRegistruValidationCodes.NOMENCLATOR_RECORD_NOT_FOUND_AT_DATE, "TIP_ACT_AVIZ_CONSULTATIV", NomTipAct.getCodeColumn(), codValue, dataRaportare);
                     }
                     atestat.getAct().setNomTipAct(nomTipAct);
-                     /*fkNomJudet*/
+                    /*fkNomJudet*/
                     atestat.getAct().setFkNomJudet(oldGospodarie.getNomUat().getNomJudet().getId());
                 }
                 /*fkNomJudet*/
@@ -130,6 +150,7 @@ public class Capitol_12ServiceImpl extends AbstractCapitolFara0XXService {
             }
         }
     }
+
 
     /**
      * @param ranDocDTO info trimse prin xml

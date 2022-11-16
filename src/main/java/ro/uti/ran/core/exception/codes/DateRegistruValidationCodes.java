@@ -91,9 +91,10 @@ public enum DateRegistruValidationCodes implements MessageProvider {
     AN_RAPORTARE_ERONAT(79,"Valoarea campului 'anRaportare' nu este valida!"),
     CONSTRANGERE_LUNGIME_CAMP_DEPASITA(80 , "Valoarea campului %s este prea lunga, ati introdus %s caractere, limita este de %s caractere"),
     NUMAR_AVIZ_CONSULTATIV_NEDEFINIT(81, "'nrAvizConsultativ' este obligatoriu de transmis!"),
-    COD_RAND_ERONAT(82, "Codul de rand are o lungimea prea mare, limita este de 2 cifre!"),
+    COD_RAND_ERONAT(82, "Codul de rand %s are o lungimea prea mare, limita este de %s cifre!"),
     ANUL_TERMINARII_ERONAT(83, "Anul terminarii trebuie sa aiba 4 cifre!"),
-    SUPRAFATA_SOL_ERONATA(84, "Suprafata sol are o lungimea prea mare, limita este de 5 cifre!");
+    SUPRAFATA_SOL_ERONATA(84, "Suprafata sol are o lungimea prea mare, limita este de 5 cifre!"),
+    SUPRAFATA_DESFASURATA_ERONATA(85, "Suprafata desfasurata are o lungimea prea mare, limita este de 5 cifre!");
 
     private MessageHolder provider;
 

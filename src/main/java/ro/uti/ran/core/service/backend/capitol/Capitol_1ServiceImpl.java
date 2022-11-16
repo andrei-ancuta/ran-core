@@ -78,6 +78,20 @@ public class Capitol_1ServiceImpl extends AbstractCapitolFara0XXService {
         List<String> xmlCnps = new ArrayList<>();
         boolean isCapGospodarie = false;
         for (MembruPf membruPf : detinatorPf.getMembruPfs()) {
+            /* Validari pentru campurile care au constrangere in baza de date, dar nu si in schema xml si genereaza erori ORA-12899*/
+            if (null != membruPf.getPersoanaFizica().getNume() && membruPf.getPersoanaFizica().getNume().length() > 60) {
+                throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "nume", membruPf.getPersoanaFizica().getNume().length(), 60);
+            }
+            if (null != membruPf.getPersoanaFizica().getPrenume() && membruPf.getPersoanaFizica().getPrenume().length() > 60) {
+                throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "prenume", membruPf.getPersoanaFizica().getPrenume().length(), 60);
+            }
+            if (null != membruPf.getPersoanaFizica().getInitialaTata() && membruPf.getPersoanaFizica().getInitialaTata().length() > 10) {
+                throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "initialaTata", membruPf.getPersoanaFizica().getInitialaTata().length(), 10);
+            }
+            if (null != membruPf.getMentiune() && membruPf.getMentiune().length() > 500) {
+                throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "mentiuni", membruPf.getMentiune().length(), 500);
+            }
+
             String cnp = (membruPf.getPersoanaFizica().getCnp() != null ? membruPf
                     .getPersoanaFizica().getCnp().toUpperCase()
                     : null);
@@ -107,28 +121,32 @@ public class Capitol_1ServiceImpl extends AbstractCapitolFara0XXService {
                 }
                 /* cnp_cap1 = cnp_cap012 */
                 if (StringUtils.isNotEmpty(oldGospodarie.getDetinatorPfs()
-                        .get(0).getPersoanaFizica().getCnp())
+                                                        .get(0).getPersoanaFizica().getCnp())
                         && !oldGospodarie.getDetinatorPfs().get(0)
-                        .getPersoanaFizica().getCnp()
-                        .equalsIgnoreCase(cnp != null ? cnp : "")) {
+                                         .getPersoanaFizica().getCnp()
+                                         .equalsIgnoreCase(cnp != null ? cnp : "")) {
                     throw new DateRegistruValidationException(
                             DateRegistruValidationCodes.CNP_CAP012_CAP1,
                             oldGospodarie.getDetinatorPfs().get(0)
-                                    .getPersoanaFizica().getCnp(),
+                                         .getPersoanaFizica().getCnp(),
                             cnp != null ? cnp : "");
                 }
                 if (StringUtils.isNotEmpty(oldGospodarie.getDetinatorPfs()
-                        .get(0).getPersoanaFizica().getNif())
+                                                        .get(0).getPersoanaFizica().getNif())
                         && !oldGospodarie.getDetinatorPfs().get(0)
-                        .getPersoanaFizica().getNif()
-                        .equalsIgnoreCase(nif != null ? nif : "")) {
+                                         .getPersoanaFizica().getNif()
+                                         .equalsIgnoreCase(nif != null ? nif : "")) {
                     throw new DateRegistruValidationException(
                             DateRegistruValidationCodes.NIF_CAP012_CAP1,
                             oldGospodarie.getDetinatorPfs().get(0)
-                                    .getPersoanaFizica().getNif(),
+                                         .getPersoanaFizica().getNif(),
                             nif != null ? nif : "");
                 }
 
+            }
+            //Validare pentru lungimea codului de rand
+            if(membruPf.getCodRand().toString().length() > 2) {
+                throw new DateRegistruValidationException(DateRegistruValidationCodes.COD_RAND_ERONAT, membruPf.getCodRand().toString(), 2);
             }
             /* MEMBRU_PF - NOM_LEGATURA_RUDENIE */
             ro.uti.ran.core.model.registru.NomLegaturaRudenie nomLegaturaRudenie = nomSrv
@@ -145,12 +163,12 @@ public class Capitol_1ServiceImpl extends AbstractCapitolFara0XXService {
             membruPf.setNomLegaturaRudenie(nomLegaturaRudenie);
             /* fkNomJudet */
             membruPf.setFkNomJudet(oldGospodarie.getNomUat().getNomJudet()
-                    .getId());
+                                                .getId());
             // PersoanaFizica
             // validare CNP
             if (membruPf.getPersoanaFizica().getCnp() != null
                     && !CnpValidator.isValid(membruPf.getPersoanaFizica()
-                    .getCnp())) {
+                                                     .getCnp())) {
                 throw new DateRegistruValidationException(
                         DateRegistruValidationCodes.CNP_INVALID, membruPf
                         .getPersoanaFizica().getCnp());

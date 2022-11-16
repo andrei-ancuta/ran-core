@@ -52,7 +52,7 @@ public class Capitol_11ServiceImpl extends AbstractCapitolFara0XXService {
      * @throws DateRegistruValidationException semnaleaza date invalide
      */
     public void valideazaDateRegistruLaEditare(RanDocDTO ranDocDTO) throws DateRegistruValidationException {
-       /*gospodaria trebuie sa existe in baza*/
+        /*gospodaria trebuie sa existe in baza*/
         Gospodarie oldGospodarie = gospodarieRepository.findByUatAndIdentificator(ranDocDTO.getSirutaUAT(), ranDocDTO.getIdentificatorGospodarie());
         if (oldGospodarie == null) {
             throw new DateRegistruValidationException(DateRegistruValidationCodes.GOSPODARIE_NOT_FOUND, ranDocDTO.getSirutaUAT(), ranDocDTO.getIdentificatorGospodarie());
@@ -62,6 +62,26 @@ public class Capitol_11ServiceImpl extends AbstractCapitolFara0XXService {
             List<String> xmlIdentificators = new ArrayList<>();
             DataRaportareValabilitate dataRaportare = new DataRaportareValabilitate(ranDocDTO.getAnRaportare());
             for (Cladire cladire : gospodarie.getCladires()) {
+
+                //Verificari pentru lungimea de camp
+                if( null != cladire.getSuprafataSol() && cladire.getSuprafataSol().toString().length() > 5) {
+                    throw new DateRegistruValidationException(DateRegistruValidationCodes.SUPRAFATA_SOL_ERONATA);
+                }
+                if( null != cladire.getAnTerminare() && cladire.getAnTerminare().toString().length() > 4) {
+                    throw new DateRegistruValidationException(DateRegistruValidationCodes.ANUL_TERMINARII_ERONAT);
+                }
+                if( null != cladire.getSuprafataDesfasurata() && cladire.getSuprafataDesfasurata().toString().length() > 5) {
+                    throw new DateRegistruValidationException(DateRegistruValidationCodes.SUPRAFATA_DESFASURATA_ERONATA);
+                }
+
+                /* Validari pentru campurile care au constrangere in baza de date, dar nu si in schema xml si genereaza erori ORA-12899*/
+                if (null != cladire.getZona() && cladire.getZona().length() > 50) {
+                    throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "zona", cladire.getZona().length(), 50);
+                }
+
+                if (null != cladire.getIdentificatorCadastral() && cladire.getIdentificatorCadastral().length() > 20) {
+                    throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "identificatorCadastralElectronic", cladire.getIdentificatorCadastral().length(), 20);
+                }
 
                 String terenGml = cladire.getGeometrieGML();
                 if (terenGml != null) {
@@ -94,6 +114,16 @@ public class Capitol_11ServiceImpl extends AbstractCapitolFara0XXService {
                 /*FK_ADRESA*/
                 if (cladire.getAdresa() != null) {
                     Adresa adresa = cladire.getAdresa();
+                    /* Validari pentru campurile care au constrangere in baza de date, dar nu si in schema xml si genereaza erori ORA-12899*/
+                    if (null != adresa.getStrada() && adresa.getStrada().length() > 50){
+                        throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "strada", adresa.getStrada().length(), 50);
+                    }
+                    if (null != adresa.getApartament() && adresa.getApartament().length() > 10){
+                        throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "apartament", adresa.getApartament().length(), 10);
+                    }
+                    if (null != adresa.getBloc() && adresa.getBloc().length() > 10){
+                        throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "bloc", adresa.getBloc().length(), 10);
+                    }
                     /*CLADIRE ADRESA  NOM_TARA*/
                     ro.uti.ran.core.model.registru.NomTara nomTara = nomSrv.getNomenclatorForStringParam(NomTara, adresa.getNomTara().getCodNumeric(), dataRaportare);
                     if (nomTara == null) {

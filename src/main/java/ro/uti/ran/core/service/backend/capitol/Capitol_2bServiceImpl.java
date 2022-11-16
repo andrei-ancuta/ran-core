@@ -1,8 +1,6 @@
 package ro.uti.ran.core.service.backend.capitol;
 
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +11,6 @@ import ro.uti.ran.core.model.registru.*;
 import ro.uti.ran.core.model.registru.NomUat;
 import ro.uti.ran.core.model.utils.IndicativXml;
 import ro.uti.ran.core.service.backend.GeometrieService;
-import ro.uti.ran.core.service.backend.ProcesareDateRegistruServiceImpl;
 import ro.uti.ran.core.service.backend.dto.GospodarieDTO;
 import ro.uti.ran.core.service.backend.dto.RanDocDTO;
 import ro.uti.ran.core.service.backend.utils.DataRaportareValabilitate;
@@ -33,7 +30,6 @@ import static ro.uti.ran.core.service.backend.nomenclator.model.NomenclatorCodeT
 @Transactional(value = "registruTransactionManager", rollbackFor = RanBusinessException.class)
 public class Capitol_2bServiceImpl extends AbstractCapitolFara0XXService {
 
-    private static final Logger logger = LoggerFactory.getLogger(Capitol_2bServiceImpl.class);
 
     @Autowired
     private GeometrieService geometrieService;
@@ -60,30 +56,47 @@ public class Capitol_2bServiceImpl extends AbstractCapitolFara0XXService {
         if (oldGospodarie == null) {
             throw new DateRegistruValidationException(DateRegistruValidationCodes.GOSPODARIE_NOT_FOUND, ranDocDTO.getSirutaUAT(), ranDocDTO.getIdentificatorGospodarie());
         }
-        logger.info("S-a facut validarea oldGospodarie pentru registrul cu indexul: " + ranDocDTO.getCodXml());
         Gospodarie gospodarie = ranDocDTO.getGospodarie();
         if (gospodarie.getParcelaTerens() != null && !gospodarie.getParcelaTerens().isEmpty()) {
             List<Integer> xmlParcelaTerensCodRand = new ArrayList<>();
             DataRaportareValabilitate dataRaportare = new DataRaportareValabilitate(ranDocDTO.getAnRaportare());
             NomUat nomUatHeader = nomSrv.getNomenclatorForStringParam(NomUat, ranDocDTO.getSirutaUAT(), dataRaportare);
-            logger.info("S-a facut validarea nomUatHeader pentru registrul cu indexul: " + ranDocDTO.getCodXml());
             for (ParcelaTeren parcelaTeren : gospodarie.getParcelaTerens()) {
+                /* Validari pentru campurile care au constrangere in baza de date, dar nu si in schema xml si genereaza erori ORA-12899*/
+                if (null != parcelaTeren.getDenumire() && parcelaTeren.getDenumire().length() > 100) {
+                    throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "denumire", parcelaTeren.getDenumire().length(), 100);
+                }
+                if (null != parcelaTeren.getNrBlocFizic() && parcelaTeren.getNrBlocFizic().length() > 32) {
+                    throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "nrBlocFizic", parcelaTeren.getNrBlocFizic().length(), 32);
+                }
+                if (null != parcelaTeren.getMentiune() && parcelaTeren.getMentiune().length() > 500) {
+                    throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "mentiuni", parcelaTeren.getMentiune().length(), 500);
+                }
+
+
                 GeometrieParcelaTeren geometrieParcelaTeren = parcelaTeren.getGeometrieParcelaTeren();
-                if (geometrieParcelaTeren != null) {
+                if (geometrieParcelaTeren != null && (geometrieParcelaTeren.getGeometrieGML().contains("Polygon") || geometrieParcelaTeren.getGeometrieGML().contains("Point"))) {
                     geometrieService.validateGeometrie(geometrieParcelaTeren.getGeometrieGML());
                     geometrieService.validateGeometriePoligonUatLimit(ranDocDTO.getSirutaUAT(), geometrieParcelaTeren.getGeometrieGML());
                 }
-                logger.info("S-a facut validarea geometrie pentru registrul cu indexul: " + ranDocDTO.getCodXml());
 
+                //Validari pentru lungimea codului de rand
+                if(parcelaTeren.getCodRand().toString().length() > 2) {
+                    throw new DateRegistruValidationException(DateRegistruValidationCodes.COD_RAND_ERONAT, parcelaTeren.getCodRand().toString(), 2);
+                }
                 /*unicitate*/
                 if (xmlParcelaTerensCodRand.contains(parcelaTeren.getCodRand())) {
                     throw new DateRegistruValidationException(DateRegistruValidationCodes.SECTIUNE_CAPITOL_DUPLICATA, "identificare_teren", "COD_RAND", parcelaTeren.getCodRand());
                 } else {
                     xmlParcelaTerensCodRand.add(parcelaTeren.getCodRand());
                 }
-                logger.info("S-a facut validarea cod rand unic la teren pentru registrul cu indexul: " + ranDocDTO.getCodXml());
                 /*PARCELA_TEREN.FK_ACT_INSTRAINARE*/
                 if (parcelaTeren.getActInstrainare() != null && parcelaTeren.getActInstrainare().getNomTipAct() != null) {
+                    /* Validari pentru campurile care au constrangere in baza de date, dar nu si in schema xml si genereaza erori ORA-12899*/
+                    if (parcelaTeren.getActInstrainare().getNumarAct().length() > 20) {
+                        throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "nrAct", parcelaTeren.getActInstrainare().getNumarAct().length(), 20);
+                    }
+
                     String codValue = parcelaTeren.getActInstrainare().getNomTipAct().getCod();
                     ro.uti.ran.core.model.registru.NomTipAct nomTipAct = nomSrv.getNomenclatorForStringParam(NomTipAct, codValue, dataRaportare);
                     if (nomTipAct == null) {
@@ -93,17 +106,18 @@ public class Capitol_2bServiceImpl extends AbstractCapitolFara0XXService {
                     /*fkNomJudet*/
                     parcelaTeren.getActInstrainare().setFkNomJudet(oldGospodarie.getNomUat().getNomJudet().getId());
                 }
-                logger.info("S-a facut validarea act detinere pentru registrul cu indexul: " + ranDocDTO.getCodXml());
                 /*PARCELA_TEREN.FK_CAP_CATEGORIE_FOLOSINTA*/
                 if (parcelaTeren.getCapCategorieFolosinta() != null) {
                     Integer codValue = parcelaTeren.getCapCategorieFolosinta().getCodRand();
+                    if (codValue.toString().length() > 2) {
+                        throw new DateRegistruValidationException(DateRegistruValidationCodes.COD_RAND_ERONAT, codValue.toString(), 2);
+                    }
                     ro.uti.ran.core.model.registru.CapCategorieFolosinta capCategorieFolosinta = nomSrv.getNomenclatorForStringParam(CapCategorieFolosinta, codValue, dataRaportare, TipCapitol.CAP2a.name());
                     if (capCategorieFolosinta == null) {
                         throw new DateRegistruValidationException(DateRegistruValidationCodes.NOMENCLATOR_RECORD_NOT_FOUND_AT_DATE, "CATEGORIE_FOLOSINTA", CapCategorieFolosinta.getCodeColumn(), codValue, dataRaportare);
                     }
                     parcelaTeren.setCapCategorieFolosinta(capCategorieFolosinta);
                 }
-                logger.info("S-a facut validarea capCategorieFolosinta pentru registrul cu indexul: " + ranDocDTO.getCodXml());
                 /*PARCELA_TEREN.FK_NOM_MODALITATE_DETINERE*/
                 if (parcelaTeren.getNomModalitateDetinere() != null) {
                     String codValue = parcelaTeren.getNomModalitateDetinere().getCod();
@@ -113,13 +127,20 @@ public class Capitol_2bServiceImpl extends AbstractCapitolFara0XXService {
                     }
                     parcelaTeren.setNomModalitateDetinere(nomModalitateDetinere);
                 }
-                logger.info("S-a facut validarea nomModalitateDetinere pentru registrul cu indexul: " + ranDocDTO.getCodXml());
                 /*PARCELA_LOCALIZARE*/
                 if (parcelaTeren.getParcelaLocalizares() != null) {
                     List<String> xmlSubRand = new ArrayList<>();
                     for (ParcelaLocalizare parcelaLocalizare : parcelaTeren.getParcelaLocalizares()) {
+                        /* Validari pentru campurile care au constrangere in baza de date, dar nu si in schema xml si genereaza erori ORA-12899*/
+                        if ( null != parcelaLocalizare.getValoare() && parcelaLocalizare.getValoare().length() > 100) {
+                            throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "valoare", parcelaLocalizare.getValoare().length(), 100);
+                        }
+
                         /*unicitate la localizare*/
                         String subRand = parcelaLocalizare.getNomTipLocalizare().getCod();
+                        if (subRand.length() > 1) {
+                            throw new DateRegistruValidationException(DateRegistruValidationCodes.COD_RAND_ERONAT, subRand, 1);
+                        }
                         if (xmlSubRand.contains(subRand)) {
                             throw new DateRegistruValidationException(DateRegistruValidationCodes.PARCELA_TEREN_LOCALIZARE_DUBLICATE,
                                     parcelaTeren.getCodRand(),
@@ -137,13 +158,15 @@ public class Capitol_2bServiceImpl extends AbstractCapitolFara0XXService {
                         }
                     }
                 }
-                logger.info("S-a facut validarea parcelaLocalizare pentru registrul cu indexul: " + ranDocDTO.getCodXml());
-
                 /*ACT_DETINERE*/
                 if (parcelaTeren.getActDetineres() != null) {
                     for (ActDetinere actDetinere : parcelaTeren.getActDetineres()) {
                         /*ACT_DETINERE.FK_NOM_TIP_ACT_DETINERE*/
                         if (actDetinere.getAct() != null) {
+                            /* Validari pentru campurile care au constrangere in baza de date, dar nu si in schema xml si genereaza erori ORA-12899*/
+                            if (null != actDetinere.getAct().getNumarAct() && actDetinere.getAct().getNumarAct().length() > 20) {
+                                throw new DateRegistruValidationException(DateRegistruValidationCodes.CONSTRANGERE_LUNGIME_CAMP_DEPASITA, "nrAct", parcelaTeren.getActInstrainare().getNumarAct().length(), 20);
+                            }
                             String codValue = actDetinere.getAct().getNomTipAct().getCod();
                             ro.uti.ran.core.model.registru.NomTipAct nomTipAct = nomSrv.getNomenclatorForStringParam(NomTipAct, codValue, dataRaportare);
                             if (nomTipAct == null) {
@@ -156,7 +179,12 @@ public class Capitol_2bServiceImpl extends AbstractCapitolFara0XXService {
                         }
                     }
                 }
-                logger.info("S-a facut validarea actDetinere pentru registrul cu indexul: " + ranDocDTO.getCodXml());
+
+                for (Integer codRand : xmlParcelaTerensCodRand) {
+                    if (codRand.toString().length() > 2) {
+                        throw new DateRegistruValidationException(DateRegistruValidationCodes.COD_RAND_ERONAT, codRand.toString());
+                    }
+                }
                 /*ACT_INSTRAINARE*/
                 if (parcelaTeren.getActInstrainare() != null) {
                     String codValue = parcelaTeren.getActInstrainare().getNomTipAct().getCod();
@@ -168,14 +196,10 @@ public class Capitol_2bServiceImpl extends AbstractCapitolFara0XXService {
                     /*fkNomJudet*/
                     parcelaTeren.getActInstrainare().setFkNomJudet(oldGospodarie.getNomUat().getNomJudet().getId());
                 }
-                logger.info("S-a facut validarea getActInstrainare pentru registrul cu indexul: " + ranDocDTO.getCodXml());
                 /*fkNomJudet*/
                 parcelaTeren.setFkNomJudet(oldGospodarie.getNomUat().getNomJudet().getId());
-                logger.info("S-a setat setFkNomJudet pentru registrul cu indexul: " + ranDocDTO.getCodXml());
-
                 //PersoanaFizica - Proprietar
                 validareReutilizareProprietar(parcelaTeren, oldGospodarie, nomUatHeader);
-                logger.info("S-a facut validarea pentru validareReutilizareProprietar pentru registrul cu indexul: " + ranDocDTO.getCodXml());
             }
         }
     }
@@ -187,7 +211,6 @@ public class Capitol_2bServiceImpl extends AbstractCapitolFara0XXService {
      * @throws DateRegistruValidationException
      */
     private void validareReutilizareProprietar(ParcelaTeren parcelaTeren, Gospodarie oldGospodarie, NomUat nomUatHeader) throws DateRegistruValidationException {
-
         List<DetinatorPf> lstPf = detinatorPfRepository.findByGospodarieAndFkNomJudet(oldGospodarie.getIdGospodarie(), oldGospodarie.getNomUat().getNomJudet().getId());
         if (lstPf != null && !lstPf.isEmpty() && (parcelaTeren.getProprietarParcelas() == null || parcelaTeren.getProprietarParcelas().isEmpty())) {
             throw new DateRegistruValidationException(DateRegistruValidationCodes.PROPRIETAR_PARCELA_OBLIGATORIU, parcelaTeren.getDenumire(), parcelaTeren.getCodRand());
@@ -266,7 +289,7 @@ public class Capitol_2bServiceImpl extends AbstractCapitolFara0XXService {
                 xmlParcelaTeren.setGeometrieParcelaTeren(null);
                 parcelaTerenRepository.save(xmlParcelaTeren);
                 //geometrie
-                if (xmlGeometrie != null) {
+                if (xmlGeometrie != null && (xmlGeometrie.getGeometrieGML().contains("Polygon") || xmlGeometrie.getGeometrieGML().contains("Point"))) {
                     geometrieService.insertParcelaTerenGIS(xmlParcelaTeren.getIdParcelaTeren(), xmlGeometrie.getGeometrieGML(), oldGospodarie.getNomUat().getNomJudet().getId(), xmlGeometrie.getIsFolosinta());
                 }
             }
